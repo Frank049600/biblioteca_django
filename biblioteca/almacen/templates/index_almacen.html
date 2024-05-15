@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Almacén{% endblock %}
+{% block content %}
+
+<!-- Content Header (Page header) -->
+<div id="acervo">
+    <section class="content-header mt-5">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Acervo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'inicio' %}"><i class="fas fa-home"
+                                    style="color: black;"></i></a></li>
+                        <li class="breadcrumb-item">Acervo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <div class="content mx-4 mb-5 p-3">
+        <div id="contentTitle" class="row">
+            <div class="col-xl-6 align-self-center">
+                <h5 class="text-bold">Tabla de registro de datos</h5>
+            </div>
+            <div class="col-xl-6">
+                <a type="button" id="btnPlusBook" class="btn float-right" data-bs-toggle="modal"
+                    data-bs-target="#acervo_add">Registrar libro<i class="fas fa-plus ml-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive bg-white p-2">
+            <table id="acervoTable" class="table table-striped w-100 mx-2">
+                <thead>
+                    <tr>
+                        <th class="text-center">Titulo</th>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center">Editorial</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Colocación</th>
+                        <th class="text-center">Edición</th>
+                        <th class="text-center">Año</th>
+                        <th class="text-center">Tipo de adquisición</th>
+                        <th class="text-center">Carrera</th>
+                        <th class="text-center">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ABC del desarrollo organizacional</td>
+                        <td>Carlos Augusto Audirac Camarena</td>
+                        <td>Trillas</td>
+                        <td class="text-right">9</td>
+                        <td>AMD 001</td>
+                        <td class="text-right">2°</td>
+                        <td class="text-right">1994</td>
+                        <td>N/A</td>
+                        <td>ADM</td>
+                        <td>Bueno</td>
+                    </tr>
+                    <tr>
+                        <td>Administración</td>
+                        <td>Javier Benavides Pañeda</td>
+                        <td>Mc Graw Hill</td>
+                        <td class="text-right">9</td>
+                        <td>AMD 002</td>
+                        <td class="text-right">2°</td>
+                        <td class="text-right">2014</td>
+                        <td>Comprado</td>
+                        <td>ADM</td>
+                        <td>Bueno</td>
+                    </tr>
+                    <tr>
+                        <td>Administración</td>
+                        <td>Javier Benavides Pañeda</td>
+                        <td>Mc Graw Hill</td>
+                        <td class="text-right">9</td>
+                        <td>AMD 002</td>
+                        <td class="text-right">2°</td>
+                        <td class="text-right">2014</td>
+                        <td>Comprado</td>
+                        <td>ADM</td>
+                        <td>Bueno</td>
+                    </tr>
+                    <tr>
+                        <td>JAVA</td>
+                        <td>Javier Vendes Alpeña</td>
+                        <td>Mc Graw Hill</td>
+                        <td class="text-right">5</td>
+                        <td>AMD 002</td>
+                        <td class="text-right">2°</td>
+                        <td class="text-right">2014</td>
+                        <td>Comprado</td>
+                        <td>TIS</td>
+                        <td>Bueno</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="text-center">Titulo</th>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center">Editorial</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Colocación</th>
+                        <th class="text-center">Edición</th>
+                        <th class="text-center">Año</th>
+                        <th class="text-center">Tipo de adquisición</th>
+                        <th class="text-center">Carrera</th>
+                        <th class="text-center">Estado</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!-- /.content -->
+</div>
+<!-- Se incluye el html de modal -->
+{% include 'modal.html' %}
+{% endblock %}

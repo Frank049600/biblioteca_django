@@ -1,0 +1,137 @@
+<!-- Modal de registro de libros -->
+<div class="modal fade" id="acervo_add" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row align-self-end">
+                <a type="button" class="btn border-0 mt-2 pr-5" id="close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Agregar nuevo libro</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/acervo/" id="tbl_addBook" method="POST">
+                            {% csrf_token %}
+                            <label for="title">Titulo del libro</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                                </div>
+                                <input type="text" name="title" class="form-control" placeholder="Titulo">
+                            </div>
+                            <label for="autor">Autor</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-feather-alt"></i></span>
+                                </div>
+                                <input type="text" name="autor" class="form-control" placeholder="Autor">
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <label for="edito">Editorial</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user-edit"></i></span>
+                                        </div>
+                                        <input type="text" name="edito" class="form-control" placeholder="Editorial">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <label for="cant">Cantidad de libros</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-boxes"></i></span>
+                                        </div>
+                                        <input type="number" name="cant" class="form-control" placeholder="Cantidad">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <label for="coloca">Colocación</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-wave-square"></i></span>
+                                        </div>
+                                        <input type="text" name="coloca" class="form-control" placeholder="Colocación">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <label for="edic">Edición</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-newspaper"></i></span>
+                                        </div>
+                                        <input type="text" name="edic" class="form-control" placeholder="Edición">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <label for="anio">Año de publicación</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input type="number" name="anio" class="form-control" placeholder="Año">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <label for="typeAdq">Tipo de adquisición</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-shopping-cart"></i></span>
+                                        </div>
+                                        <input type="text" name="typeAdq" class="form-control"
+                                            placeholder="Adquisición">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <label for="typeAdq">Carrera</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                        </div>
+                                        <select class="form-control" name="carrera" aria-label="Default select example">
+                                            <option selected>- Indique la carrera -</option>
+                                            <option value="TIS">TIS</option>
+                                            <option value="IDGS">IDGS</option>
+                                            <option value="ADMO">ADMO</option>
+                                            <option value="MET">MET</option>
+                                            <option value="QA">QA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <label for="typeAdq">Estado</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                                        </div>
+                                        <select class="form-control" name="stateBook"
+                                            aria-label="Default select example">
+                                            <option selected>- Indique el estado del libro -</option>
+                                            <option value="B">Bueno</option>
+                                            <option value="R">Regular</option>
+                                            <option value="M">Malo</option>
+                                            <option value="Mm">Muy malo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary float-right ml-1"
+                                id="btnModalSend">Agregar</button>
+                            <button type="button" class="btn btn-default float-right"
+                                data-bs-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

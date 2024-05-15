@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Proyectos de estadias{% endblock %}
+{% block content %}
+
+<!-- Content Header (Page header) -->
+<div id="proyectos">
+    <section class="content-header mt-5">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Proyectos de estadias</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'inicio' %}"><i class="fas fa-home"
+                                    style="color: black;"></i></a></li>
+                        <li class="breadcrumb-item">Proyectos de Estadias</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <div class="content mx-4 mb-5 p-3">
+        <div id="contentTitle" class="row">
+            <div class="col-xl-6 align-self-center">
+                <h5 class="text-bold">Tabla de registro de Proyectos</h5>
+            </div>
+            <div class="col-xl-6">
+                <a type="button" id="btnPlusBook" class="btn float-right" data-bs-toggle="modal"
+                    data-bs-target="#modal_registro">Registrar Proyecto<i class="fas fa-plus ml-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive bg-white p-2">
+            <table id="ProyectosTable" class="table table-striped w-100 mx-2">
+                <thead>
+                    <tr>
+                        <th class="text-center">Proyecto</th>
+                        <th class="text-center">Alumno(s)</th>
+                        <th class="text-center">Asesor Academico</th>
+                        <th class="text-center">Generacion</th>
+                        <th class="text-center">Asesor Empresarial</th>
+                        <th class="text-center">Empresa</th>
+                        <th class="text-center">Carrera</th>
+                        <th class="text-center">Reporte de Estadias</th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- LA INFO SE AGREGA DESDE EL FORMULARIO POR MEDIO DE JAVASCRIPT -->
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+    <!-- /.content -->
+</div>
+<script>
+function agregarFila() {
+    // Obtener los valores del formulario
+    var proyecto = document.getElementById("proyecto").value;
+    var alumno = document.getElementById("alumno").value;
+
+  
+
+
+   
+}
+</script>
+<!-- Se incluye el html de modal -->
+{% include 'modal_registro.html' %}
+{% endblock %}

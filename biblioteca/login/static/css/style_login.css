@@ -1,0 +1,79 @@
+#sectionLogin section .card {
+    background-color: #e2e2e2;
+}
+
+#sectionLogin .gradient-custom-2 {
+    color: black;
+    font-size: 20px;
+    /* fallback for old browsers */
+    background: #fccb90;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #28a745, #35a750, #45a95c, #60ac72);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #2fc452, #2ee058, #22ba45, #18a338);
+    transition: all 0.7s;
+}
+
+#sectionLogin .gradient-custom-2:hover {
+    transition: all 0.7s;
+    border-radius: 2rem;
+    -webkit-box-shadow: 8px 8px 21px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 8px 21px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 8px 8px 21px -5px rgba(0, 0, 0, 0.75);
+    /*box-shadow: 2px 10px 1px 1px rgba(0, 0, 0, 0.2);*/
+}
+
+@media (min-width: 768px) {
+    #sectionLogin .gradient-form {
+        height: 100vh !important;
+    }
+}
+
+@media (min-width: 769px) {
+    #sectionLogin .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+}
+
+#sectionLogin section {
+    background-image: url(../img/opcion3.JPG);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#sectionLogin #logoImgUts {
+    max-width: 50%;
+}
+
+#sectionLogin .card {
+    max-width: 40%;
+}
+
+/*
+#sectionLogin .bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+}
+
+@media (min-width: 1025px) {
+    #sectionLogin .h-custom-2 {
+        height: 100%;
+    }
+}
+
+#sectionLogin section {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#sectionLogin #carousel img {
+    max-height: 100%;
+}
+*/
