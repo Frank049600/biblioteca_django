@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'almacen.apps.AlmacenConfig',
     'login.apps.LoginConfig',
     'inicio.apps.InicioConfig',
-    'proyectos_estadias.apps.ProyectosEstadiasConfig',
+    'estadias.apps.EstadiasConfig',
 
     ]
 

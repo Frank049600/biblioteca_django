@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from almacen.views import index_acervo as acervo
 from inicio.views import index_inicio as inicio
-from proyectos_estadias.views import index_proyectos as proyectos
+from estadias.views import index_proyectos as proyectos
 from django.contrib.auth.decorators import login_required
 from login.views import Login, logoutUser
 
