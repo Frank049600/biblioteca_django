@@ -32,7 +32,7 @@ class estadias(models.Model):
         help_text="Prioridad de la tarea"
     )
    reporte = models.FileField(null=True,upload_to='documentos_pdf/')
-   convenio = models.FileField(null=True,upload_to='documentos_xlsx/')
+   convenio = models.FileField(null=True,upload_to='documentos_pdf/')
    c_aceptacion= models.FileField(null=True,upload_to='documentos_pdf/')
    cronograma= models.FileField(null=True,upload_to='documentos_pdf/')
 

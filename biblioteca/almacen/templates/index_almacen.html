@@ -45,61 +45,25 @@
                         <th class="text-center">Edición</th>
                         <th class="text-center">Año</th>
                         <th class="text-center">Tipo de adquisición</th>
-                        <th class="text-center">Carrera</th>
                         <th class="text-center">Estado</th>
+                        <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for list in list_acervo %}
                     <tr>
-                        <td>ABC del desarrollo organizacional</td>
-                        <td>Carlos Augusto Audirac Camarena</td>
-                        <td>Trillas</td>
-                        <td class="text-right">9</td>
-                        <td>AMD 001</td>
-                        <td class="text-right">2°</td>
-                        <td class="text-right">1994</td>
-                        <td>N/A</td>
-                        <td>ADM</td>
-                        <td>Bueno</td>
-                    </tr>
-                    <tr>
-                        <td>Administración</td>
-                        <td>Javier Benavides Pañeda</td>
-                        <td>Mc Graw Hill</td>
-                        <td class="text-right">9</td>
-                        <td>AMD 002</td>
-                        <td class="text-right">2°</td>
-                        <td class="text-right">2014</td>
-                        <td>Comprado</td>
-                        <td>ADM</td>
-                        <td>Bueno</td>
-                    </tr>
-                    <tr>
-                        <td>Administración</td>
-                        <td>Javier Benavides Pañeda</td>
-                        <td>Mc Graw Hill</td>
-                        <td class="text-right">9</td>
-                        <td>AMD 002</td>
-                        <td class="text-right">2°</td>
-                        <td class="text-right">2014</td>
-                        <td>Comprado</td>
-                        <td>ADM</td>
-                        <td>Bueno</td>
-                    </tr>
-                    <tr>
-                        <td>JAVA</td>
-                        <td>Javier Vendes Alpeña</td>
-                        <td>Mc Graw Hill</td>
-                        <td class="text-right">5</td>
-                        <td>AMD 002</td>
-                        <td class="text-right">2°</td>
-                        <td class="text-right">2014</td>
-                        <td>Comprado</td>
-                        <td>TIS</td>
-                        <td>Bueno</td>
-                    </tr>
+                        <td>{{ list.titulo }}</td>
+                        <td>{{ list.autor }}</td>
+                        <td>{{ list.editorial }}</td>
+                        <td class="text-right">{{ list.cant }}</td>
+                        <td>{{ list.colocacion }}</td>
+                        <td class="text-right">{{ list.edicion }}</td>
+                        <td class="text-right">{{ list.año }}</td>
+                        <td>{{ list.type_adqui }}</td>
+                        <td>{{ list.estado }}</td>
+                        {% endfor %}
                 </tbody>
-                <tfoot>
+                <!--tfoot>
                     <tr>
                         <th class="text-center">Titulo</th>
                         <th class="text-center">Autor</th>
@@ -112,7 +76,7 @@
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Estado</th>
                     </tr>
-                </tfoot>
+                </tfoot-->
             </table>
         </div>
     </div>
