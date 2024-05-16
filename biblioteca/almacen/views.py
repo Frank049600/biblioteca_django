@@ -21,7 +21,11 @@ def acervo_registro(request):
         fechaRegistro = datetime.now()
 
         acervo = acervo_model.objects.create(
+<<<<<<< HEAD
                  
+=======
+                titulo = titulo,
+>>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
                 autor = autor,
                 editorial = editorial,
                 cant = cant,
@@ -32,7 +36,11 @@ def acervo_registro(request):
                 estado = estado,
                 fechaRegistro = fechaRegistro
         )
+<<<<<<< HEAD
         return redirect('')
+=======
+        return redirect('acervo/')
+>>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
 
 # def deleteAcervo(request, codigo):
 #         acervo_delete = acervo_model.objects.get(codigo=codigo)

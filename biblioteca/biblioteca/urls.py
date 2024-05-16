@@ -20,6 +20,9 @@ urlpatterns = [
     # Rutas de registro Acervo
     path('acervo_registro/', login_required(acervo_registro)),
     # path('deleteAcervo/<codigo>', deleteAcervo)
+<<<<<<< HEAD
     path('estadias_registro/',login_required(estadias_registro))
+=======
+>>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
 
 ]
