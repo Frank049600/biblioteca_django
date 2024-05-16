@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from almacen.views import index_acervo as acervo
+from almacen.views import acervo_registro
 from inicio.views import index_inicio as inicio
 from estadias.views import index_proyectos as proyectos
 from django.contrib.auth.decorators import login_required
@@ -15,5 +16,8 @@ urlpatterns = [
     path('logout/', login_required(logoutUser), name = 'logout'),
     path('proyectos/',login_required(proyectos),name='proyectos'),
     path('alumnos/',login_required(alumnos),name='alumnos'),
+    # Rutas de registro Acervo
+    path('acervo_registro/', login_required(acervo_registro)),
+    # path('deleteAcervo/<codigo>', deleteAcervo)
 
 ]
