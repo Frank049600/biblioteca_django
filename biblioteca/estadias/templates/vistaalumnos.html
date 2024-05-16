@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Proyectos de estadias{% endblock %}
+{% block title %}Proyectos de Estadías{% endblock %}
 {% block content %}
+  <br>
 
-<!-- Content Header (Page header) -->
-<div id="proyectos">
+
+  <div id="proyectos">
     <section class="content-header mt-5">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Proyectos de estadias</h1>
+                    <h1>Proyectos de estadías</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{% url 'inicio' %}"><i class="fas fa-home"
                                     style="color: black;"></i></a></li>
-                        <li class="breadcrumb-item">Proyectos de Estadias</li>
+                        <li class="breadcrumb-item">UTS Proyectos de Estadías</li>
                     </ol>
                 </div>
             </div>
@@ -25,32 +26,27 @@
     <div class="content mx-4 mb-5 p-3">
         <div id="contentTitle" class="row">
             <div class="col-xl-6 align-self-center">
-                <h5 class="text-bold">Tabla de registro de Proyectos</h5>
+                <h5 class="text-bold">Proyectos de Estadias</h5>
             </div>
-            <div class="col-xl-6">
-                <a type="button" id="btnPlusBook" class="btn float-right" data-bs-toggle="modal"
-                    data-bs-target="#modal_registro">Registrar Proyecto<i class="fas fa-plus ml-1"></i>
-                </a>
-            </div>
+
         </div>
         <div class="table-responsive bg-white p-2">
             <table id="ProyectosTable" class="table table-striped w-100 mx-2">
                 <thead>
                     <tr>
-                        <th class="text-center">Proyecto</th>
-                        <th class="text-center">Alumno(s)</th>
-                        <th class="text-center">Asesor Academico</th>
-                        <th class="text-center">Generacion</th>
-                        <th class="text-center">Asesor Empresarial</th>
-                        <th class="text-center">Empresa</th>
-                        <th class="text-center">Carrera</th>
-                        <th class="text-center">Reporte de Estadias</th>
                         
-
+                        <th class="text-center">Proyecto</th>
+                        <th class="text-center">Alumno</th>
+                        <th class="text-center">Asesor Académico</th>
+                        <th class="text-center">Generación</th>
+                        <th class="text-center">Empresa</th>
+                        <th class="text-center">Asesor Empresarial</th>
+                        <th class="text-center">Carrera</th>
+                        <th class="text-center">Reporte</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for p in reporte %}
+                  {% for p in reporte %}
                     <tr>
                       <td>{{p.proyecto}}</td>
                       <td>{{p.alumno}}</td>
@@ -63,24 +59,27 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-                
+                <tfoot>
+                    <tr>
+                      <th class="text-center">Proyecto</th>
+                      <th class="text-center">Alumno</th>
+                      <th class="text-center">Asesor Académico</th>
+                      <th class="text-center">Generación</th>
+                      <th class="text-center">Empresa</th>
+                      <th class="text-center">Asesor Empresarial</th>
+                      <th class="text-center">Carrera</th>
+                      <th class="text-center">Reporte</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
     <!-- /.content -->
-</div>
-<script>
-function agregarFila() {
-    // Obtener los valores del formulario
-    var proyecto = document.getElementById("proyecto").value;
-    var alumno = document.getElementById("alumno").value;
+  </div>
 
   
 
-
-   
-}
-</script>
-<!-- Se incluye el html de modal -->
-{% include 'modal_registro.html' %}
 {% endblock %}
+
+
+
