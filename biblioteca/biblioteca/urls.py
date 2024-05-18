@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from login.views import Login, logoutUser
 from estadias.views import vistaalumnos as alumnos
 from estadias.views import estadias_registro
+from estadias.views import my_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,9 +21,9 @@ urlpatterns = [
     # Rutas de registro Acervo
     path('acervo_registro/', login_required(acervo_registro)),
     # path('deleteAcervo/<codigo>', deleteAcervo)
-<<<<<<< HEAD
-    path('estadias_registro/',login_required(estadias_registro))
-=======
->>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
+
+    path('estadias_registro/',login_required(estadias_registro)),
+    path('detail/<reporte>',my_view,name='detail_view'),
+
 
 ]

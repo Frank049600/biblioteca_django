@@ -1,6 +1,9 @@
 from django.db import models
+import os
 
 # Create your models here.
+def generate_path(instance,filename):
+    return os.path.join("archivos","estadias_" + str(instance.idupload),filename)
 class estadias(models.Model):
    
    proyecto=models.CharField(max_length=150)
@@ -31,10 +34,11 @@ class estadias(models.Model):
         blank=True,
         help_text="Prioridad de la tarea"
     )
-   reporte = models.FileField(null=True,upload_to='documentos_pdf/')
-   convenio = models.FileField(null=True,upload_to='documentos_pdf/')
-   c_aceptacion= models.FileField(null=True,upload_to='documentos_pdf/')
-   cronograma= models.FileField(null=True,upload_to='documentos_pdf/')
+  
+   reporte = models.FileField(null=True,upload_to=generate_path,blank=True)
+   convenio = models.FileField(null=True,upload_to=generate_path,blank=True)
+   c_aceptacion= models.FileField(null=True,upload_to=generate_path,blank=True)
+   cronograma= models.FileField(null=True,upload_to=generate_path,blank=True)
 
 
 
@@ -48,3 +52,4 @@ class estadias(models.Model):
    class Meta:
         verbose_name="estadias"
         verbose_name_plural='estadias'
+
