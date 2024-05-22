@@ -12,7 +12,17 @@ $(function () {
     //});
     //$.LoadingOverlay("show");
 
+    //$('#acervo_delete').on('click', function (e) {
+    //    e.preventDefault()
+    //    let coloca = $(this).data('coloca')
+    //    sweetalert_confirm('¿Estas seguro?', 'No podrás recuperar el registro', 'warning', coloca)
+    //})
+
+
     new DataTable('#acervoTable', {
+        columnDefs: [
+            { orderable: false, target: [9] }
+        ],
         layout: {
             bottomEnd: {
                 paging: {

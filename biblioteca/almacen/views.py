@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import acervo_model
 from datetime import datetime
+from django.contrib import messages
 
 # Create your views here.
 def index_acervo(request):
@@ -21,11 +22,7 @@ def acervo_registro(request):
         fechaRegistro = datetime.now()
 
         acervo = acervo_model.objects.create(
-<<<<<<< HEAD
-                 
-=======
                 titulo = titulo,
->>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
                 autor = autor,
                 editorial = editorial,
                 cant = cant,
@@ -36,13 +33,12 @@ def acervo_registro(request):
                 estado = estado,
                 fechaRegistro = fechaRegistro
         )
-<<<<<<< HEAD
-        return redirect('')
-=======
-        return redirect('acervo/')
->>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
+        # return redirect('')
+        return redirect('acervo')
 
-# def deleteAcervo(request, codigo):
-#         acervo_delete = acervo_model.objects.get(codigo=codigo)
-#         acervo_delete.delete()
-#         return redirect('acervo/')
+def delete_acervo(request, colocacion):
+        acervo_delete = acervo_model.objects.get(colocacion=colocacion)
+        acervo_delete.delete()
+        messages.success(request, 'Registro Eliminado')
+        return redirect(to="acervo")
+        # return redirect('acervo/')

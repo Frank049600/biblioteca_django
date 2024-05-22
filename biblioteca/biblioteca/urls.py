@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from almacen.views import index_acervo as acervo
-from almacen.views import acervo_registro
+from almacen.views import acervo_registro, delete_acervo
 from inicio.views import index_inicio as inicio
 from estadias.views import index_proyectos as proyectos
 from django.contrib.auth.decorators import login_required
@@ -19,10 +19,7 @@ urlpatterns = [
     path('alumnos/',login_required(alumnos),name='alumnos'),
     # Rutas de registro Acervo
     path('acervo_registro/', login_required(acervo_registro)),
+    path('delete_acervo/<colocacion>', login_required(delete_acervo), name='delete_acervo'),
     # path('deleteAcervo/<codigo>', deleteAcervo)
-<<<<<<< HEAD
-    path('estadias_registro/',login_required(estadias_registro))
-=======
->>>>>>> 43d98ef4561fe715bc11d6573f8259ade7d1e26e
-
+    path('estadias_registro/',login_required(estadias_registro)),
 ]

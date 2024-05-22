@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Almacén{% endblock %}
+{% block title %} Acervo {% endblock %}
+{% block js %}
+<script>
+    function delete_register(id) {
+        Swal.fire({
+            "title": "¿Estas seguro?",
+            "text": "El registro no se podrá recuperar",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Aceptar",
+            "reverseButtons": true,
+            "confirmButtonColor": "#dc3545"
+        })
+            .then(function (result) {
+            })
+    }
+</script>
+{% endblock %}
 {% block content %}
 
 <!-- Content Header (Page header) -->
@@ -34,7 +52,7 @@
             </div>
         </div>
         <div class="table-responsive bg-white p-2">
-            <table id="acervoTable" class="table table-striped w-100 mx-2">
+            <table id="acervoTable" class="cell-border stripe" style="width:100%">
                 <thead>
                     <tr>
                         <th class="text-center">Titulo</th>
@@ -46,7 +64,7 @@
                         <th class="text-center">Año</th>
                         <th class="text-center">Tipo de adquisición</th>
                         <th class="text-center">Estado</th>
-                        <th colspan="2">Acciones</th>
+                        <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,23 +78,25 @@
                         <td class="text-right">{{ list.edicion }}</td>
                         <td class="text-right">{{ list.año }}</td>
                         <td>{{ list.type_adqui }}</td>
-                        <td>{{ list.estado }}</td>
+                        <td class="text-center">
+                            {% if list.estado == "EXC" %}
+                            <i class="fas fa-circle text-success"></i>
+                            {% endif %}
+                            {% if list.estado == "BUE" %}
+                            <i class="fas fa-circle" style="color:rgb(255, 115, 0)"></i>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <!-- Edita el registro -->
+                            <a href="#"><i class="fas fa-edit text-info"></i></a>
+                            <!-- Elimina el registro -->
+                            <a href="{% url 'delete_acervo' list.colocacion %}" id="acervo_delete"
+                                data-coloca="{{ list.colocacion }}"><i class="fas fa-trash-alt text-danger"></i></a>
+                            <!--a href="#" onclick="delete_register('{{ list.colocacion }}')" id="acervo_delete"
+                                data-coloca="{{ list.colocacion }}"><i class="fas fa-trash-alt text-danger"></i></a-->
+                        </td>
                         {% endfor %}
                 </tbody>
-                <!--tfoot>
-                    <tr>
-                        <th class="text-center">Titulo</th>
-                        <th class="text-center">Autor</th>
-                        <th class="text-center">Editorial</th>
-                        <th class="text-center">Cantidad</th>
-                        <th class="text-center">Colocación</th>
-                        <th class="text-center">Edición</th>
-                        <th class="text-center">Año</th>
-                        <th class="text-center">Tipo de adquisición</th>
-                        <th class="text-center">Carrera</th>
-                        <th class="text-center">Estado</th>
-                    </tr>
-                </tfoot-->
             </table>
         </div>
     </div>
