@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import estadias
 # Create your views here.
 def modal_registro(request):
@@ -21,7 +21,7 @@ def estadias_registro(request):
              empresa=request.POST['empresa']
              asesor_empresarial=request.POST['asemp']
              carrera=request.POST['carrera']
-             reporte=request.POST['archivo']
+             reporte=request.POST['reporte']
              convenio=request.POST['convenio']
              c_aceptacion=request.POST['c_aceptacion']
              cronograma=request.POST['cronograma']
@@ -41,3 +41,7 @@ def estadias_registro(request):
 
         )
              return redirect('proyectos')
+
+def my_view(request,reporte):
+        p=get_object_or_404(estadias,reporte=reporte)
+        return render(request,'vistaalumnos.html',{'reporte':p})
