@@ -1,20 +1,18 @@
-const sweetalert_confirm = (title, text, icon, id) => {
+const register_deleteSwal = (title, coloca, text, icon, rute) => {
     Swal.fire({
-        title: title,
-        text: text,
-        icon: icon,
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar",
-        showLoaderOnConfirm: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "{% url 'delete_acervo' " + id + " %}"
-            Swal.fire({
-                title: "Borrado correctamente",
-                icon: "success"
-            });
-        }
-    });
+        "title": '¿Eliminar ' + title + '-' + coloca + '?',
+        "text": text,
+        "icon": icon,
+        "showCancelButton": true,
+        "cancelButtonText": "Cancelar",
+        "confirmButtonText": "Aceptar",
+        "reverseButtons": true,
+        "confirmButtonColor": "#dc3545",
+    })
+        .then(function (result) {
+            if (result.isConfirmed) {
+                // Envía la colocación del registro a eliminar
+                location.href = rute + coloca
+            }
+        })
 }

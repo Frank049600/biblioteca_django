@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import estadias
+import os
 # Create your views here.
 def modal_registro(request):
         return render(request, 'modal_registro.html')
@@ -10,7 +11,7 @@ def index_proyectos (request):
 
 def vistaalumnos(request):
         reporte=estadias.objects.all()
-  
+
         return render(request,'vistaalumnos.html',{"reporte":reporte})
 
 def estadias_registro(request):
@@ -21,11 +22,11 @@ def estadias_registro(request):
              empresa=request.POST['empresa']
              asesor_empresarial=request.POST['asemp']
              carrera=request.POST['carrera']
-             reporte=request.POST['reporte']
-             convenio=request.POST['convenio']
-             c_aceptacion=request.POST['c_aceptacion']
-             cronograma=request.POST['cronograma']
-        
+             reporte= request.FILES['reporte']
+             convenio=request.FILES['convenio']
+             c_aceptacion=request.FILES['c_aceptacion']
+             cronograma=request.FILES['cronograma']
+
              proyectos=estadias.objects.create(
                proyecto= proyecto,
                alumno=alumno ,
@@ -38,10 +39,13 @@ def estadias_registro(request):
                convenio=convenio,
                c_aceptacion=c_aceptacion,
                cronograma=cronograma
-
-        )
+            )
              return redirect('proyectos')
 
 def my_view(request,reporte):
         p=get_object_or_404(estadias,reporte=reporte)
         return render(request,'vistaalumnos.html',{'reporte':p})
+
+# Función para mostrar file report
+def view_report(request, report):
+        os.system(report)

@@ -12,11 +12,35 @@ $(function () {
     //});
     //$.LoadingOverlay("show");
 
-    //$('#acervo_delete').on('click', function (e) {
-    //    e.preventDefault()
-    //    let coloca = $(this).data('coloca')
-    //    sweetalert_confirm('¿Estas seguro?', 'No podrás recuperar el registro', 'warning', coloca)
-    //})
+    $('#acervoTable').on('click', 'tbody tr td a#remove_register', function (e) {
+        let data = $(this).closest('tr').data(),
+            coloca = data['coloca'],
+            title = data['title'],
+            text = "El registro no se podrá recuperar",
+            icon = "warning",
+            rute = '/delete_acervo/'
+        // Llama el SweetAlert del script notification
+        register_deleteSwal(title, coloca, text, icon, rute)
+    })
+
+
+    function remove_register(id) {
+        Swal.fire({
+            "title": "¿Estas seguro?",
+            "text": "El registro no se podrá recuperar",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Aceptar",
+            "reverseButtons": true,
+            "confirmButtonColor": "#dc3545"
+        })
+            .then(function (result) {
+                if (result.isConfirmed) {
+                    console.log('Se borrara')
+                }
+            })
+    }
 
 
     new DataTable('#acervoTable', {
@@ -107,3 +131,4 @@ $(function () {
         $('#acervo_add').modal('hide')
     })
 })
+

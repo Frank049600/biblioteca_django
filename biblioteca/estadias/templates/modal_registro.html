@@ -79,7 +79,6 @@
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
-
                                         </div>
                                         <input type="text" name="generacion" class="form-control"
                                             placeholder="Generación">
@@ -110,17 +109,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xl-6">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01" name="archivo" accept=".pdf">
-                                    <label class="custom-file-label" for="inputGroupFile01">Reporte de
-                                        Estadías</label>
-                                </div>
-                                <div class="col-xl-6">
-                                    <label class="form-label" name="convenio" for="customFile">Convenio</label>
-                                    <input type="file" accept=".xlsx" name="convenio" class="form-control"
-                                        id="customFile" />
-                                    <label class="form-label" name="reporte" for="customFile">Reporte de
-                                        Estadias</label>
+                                    <label class="form-label" name="reporte" for="customFile">Reporte estadías</label>
                                     <input type="file" accept=".pdf" name="reporte" class="form-control"
                                         id="customFile" />
                                 </div>
@@ -130,37 +119,27 @@
                                         id="customFile" />
                                 </div>
                             </div>
-
-
-
+                            <div class="row mt-4 mb-3">
+                                <div class="col-xl-6">
+                                    <label class="form-label" name="cronograma" for="customFile">Cronograma</label>
+                                    <input type="file" accept=".pdf" name="cronograma" class="form-control"
+                                        id="customFile" />
+                                </div>
+                                <div class="col-xl-6">
+                                    <label class="form-label" name="c_aceptacion" for="customFile">Carta de
+                                        Aceptación</label>
+                                    <input type="file" accept=".pdf" name="c_aceptacion" class="form-control"
+                                        id="customFile" />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary float-right ml-1"
+                                id="btnModalSend">Agregar</button>
+                            <button type="button" class="btn btn-default float-right"
+                                data-bs-dismiss="modal">Cancelar</button>
+                        </form>
                     </div>
-
                 </div>
-
-                <div class="row">
-
-
-
-                    <div class="col-xl-6">
-                        <label class="form-label" name="cronograma" for="customFile">Cronograma</label>
-                        <input type="file" accept=".pdf" name="cronograma" class="form-control" id="customFile" />
-                    </div>
-
-                    <div class="col-xl-6">
-                        <label class="form-label" name="c_aceptacion" for="customFile">Carta de Aceptación</label>
-                        <input type="file" accept=".pdf" name="c_aceptacion" class="form-control" id="customFile" />
-                    </div>
-
-                </div>
-
-                <br>
-                <button type="submit" class="btn btn-primary float-right ml-1" id="btnModalSend">Agregar</button>
-                <button type="button" class="btn btn-default float-right" data-bs-dismiss="modal">Cancelar</button>
-
-                </form>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>

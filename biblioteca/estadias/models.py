@@ -1,11 +1,6 @@
 from django.db import models
-import os
-
-# Create your models here.
-def generate_path(instance,filename):
-    return os.path.join("archivos","estadias_" + str(instance.idupload),filename)
 class estadias(models.Model):
-   
+
    proyecto=models.CharField(max_length=150)
    alumno=models.CharField(max_length=150)
    asesor_academico=models.CharField(max_length=150)
@@ -26,7 +21,7 @@ class estadias(models.Model):
         ("ISIP","ISIP"),
         ("IPQ","IPQ"),
         ("LGCH","LGCH"))
-   
+
    carrera=models.CharField(
         max_length=20,
         choices=ELECCION_CARRERA,
@@ -34,17 +29,17 @@ class estadias(models.Model):
         blank=True,
         help_text="Prioridad de la tarea"
     )
-  
-   reporte = models.FileField(null=True,upload_to=generate_path,blank=True)
-   convenio = models.FileField(null=True,upload_to=generate_path,blank=True)
-   c_aceptacion= models.FileField(null=True,upload_to=generate_path,blank=True)
-   cronograma= models.FileField(null=True,upload_to=generate_path,blank=True)
+
+   reporte = models.FileField(null=True,upload_to='files',blank=True)
+   convenio = models.FileField(null=True,upload_to='files',blank=True)
+   c_aceptacion= models.FileField(null=True,upload_to='files',blank=True)
+   cronograma= models.FileField(null=True,upload_to='files',blank=True)
 
 
 
-    
-    
-    
+
+
+
 
    def _str_(self):
         return self.alumno

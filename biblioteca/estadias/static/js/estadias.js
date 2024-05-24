@@ -80,6 +80,16 @@ $(function () {
             "infoEmpty": "No hay datos para mostrar"
         }
     })
+
+    $('#ProyectosTable').on('click', 'tbody tr td a#view_report', function (e) {
+        let data = $(this).closest('tr').data(),
+            rute = data['report']
+        if (rute != 'undefined') {
+            location.href = '/view_report/' + rute
+        }
+    })
+
+
     /** Función para cerrado de modal */
     $('#modal_registro').on('click', 'a#close', function () {
         $('#modal_registro').modal('hide')
