@@ -23,6 +23,12 @@
 # Crear superUsuario
 # py manage.py createsuperuser
 #
+# pip install django-session-security
+# Si no te lo permite realizar lo siguiente (en orden)
+# Usar: pip uninstall django-session-security
+# Usar: pip install django-session-security
+#
 #
 # Ejecutar runserver
 # py manage.py runserver
+#

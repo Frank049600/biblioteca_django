@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import estadias
 import os
+from pathlib import Path
+
+from datetime import datetime, timedelta
+from django.conf import settings
+from django.contrib import auth
+
 # Create your views here.
 def modal_registro(request):
         return render(request, 'modal_registro.html')
@@ -11,7 +17,6 @@ def index_proyectos (request):
 
 def vistaalumnos(request):
         reporte=estadias.objects.all()
-
         return render(request,'vistaalumnos.html',{"reporte":reporte})
 
 def estadias_registro(request):
@@ -47,5 +52,15 @@ def my_view(request,reporte):
         return render(request,'vistaalumnos.html',{'reporte':p})
 
 # Función para mostrar file report
-def view_report(request, report):
-        os.system(report)
+def view_report(request, report_name):
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        MEDIA_URL = '/files/'
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
+
+        # reporte=estadias.objects.all()
+        return render(request,'tablaformulario.html')
+        #print(MEDIA_ROOT)
+        #test_file=open(BASE_DIR + reporte)
+        ##response = HttpResponse()
+        ##response['Content-Type'] = 'application/pdf'
+        #return test_file

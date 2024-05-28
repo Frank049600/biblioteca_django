@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from almacen.views import index_acervo as acervo
 from almacen.views import acervo_registro, delete_acervo
 from inicio.views import index_inicio as inicio
@@ -7,7 +7,8 @@ from estadias.views import index_proyectos as proyectos
 from django.contrib.auth.decorators import login_required
 from login.views import Login, logoutUser
 from estadias.views import vistaalumnos as alumnos
-from estadias.views import estadias_registro, my_view, view_report
+from estadias.views import estadias_registro, my_view
+from estadias.views import view_report
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,8 @@ urlpatterns = [
     path('estadias_registro/',login_required(estadias_registro)),
     path('detail/<reporte>',my_view,name='detail_view'),
 
-    path('view_report/<reporte>', login_required(view_report), name='view_report')
+    path('view_report', login_required(view_report), name='view_report'),
+
+    # aplicación de sesión
+    path('session-security/', include('session_security.urls')),
 ]

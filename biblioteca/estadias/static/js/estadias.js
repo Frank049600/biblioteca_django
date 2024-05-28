@@ -82,10 +82,11 @@ $(function () {
     })
 
     $('#ProyectosTable').on('click', 'tbody tr td a#view_report', function (e) {
+        console.log('llega')
         let data = $(this).closest('tr').data(),
             rute = data['report']
         if (rute != 'undefined') {
-            location.href = '/view_report/' + rute
+            location.href = window.location.origin + '/view_report/' + rute
         }
     })
 
