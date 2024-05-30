@@ -73,7 +73,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # O SESSION_SECURITY_INSECURE = True
 
 SESSION_SECURITY_WARN_AFTER = 50  # Número de segundos antes de mostrar una advertencia de inactividad
 
-SESSION_SECURITY_EXPIRE_AFTER = 120  # Número de segundos antes de expirar la sesión por inactividad
+SESSION_SECURITY_EXPIRE_AFTER = 1200  # Número de segundos antes de expirar la sesión por inactividad
 
 ROOT_URLCONF = 'biblioteca.urls'
 

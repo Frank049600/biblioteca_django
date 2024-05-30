@@ -1,11 +1,10 @@
 <!-- Modal de registro de libros -->
-<div class="modal fade" id="acervo_add" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="acervo_add" data-bs-backdrop="static" tabindex="-1" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="row align-self-end">
-                <a type="button" class="btn border-0 mt-2 pr-5" id="close">
-                    <i class="fas fa-times"></i>
-                </a>
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card card-info">
@@ -121,6 +120,21 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="more_info_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Más información</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="show_more"></div>
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

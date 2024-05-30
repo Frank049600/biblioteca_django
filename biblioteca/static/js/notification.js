@@ -1,11 +1,12 @@
 const register_deleteSwal = (title, coloca, text, icon, rute) => {
     Swal.fire({
-        "title": '¿Eliminar ' + title + '-' + coloca + '?',
+        "title": title + ' - ' + coloca,
         "text": text,
         "icon": icon,
         "showCancelButton": true,
+        //"allowOutsideClick": false,
         "cancelButtonText": "Cancelar",
-        "confirmButtonText": "Aceptar",
+        "confirmButtonText": "Eliminar",
         "reverseButtons": true,
         "confirmButtonColor": "#dc3545",
     })

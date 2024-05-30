@@ -26,7 +26,7 @@ urlpatterns = [
     path('estadias_registro/',login_required(estadias_registro)),
     path('detail/<reporte>',my_view,name='detail_view'),
 
-    path('view_report', login_required(view_report), name='view_report'),
+    path('view_report/', login_required(view_report), name='view_report'),
 
     # aplicación de sesión
     path('session-security/', include('session_security.urls')),
