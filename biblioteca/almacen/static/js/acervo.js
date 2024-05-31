@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
     // Overlay
     //$.LoadingOverlay("show", {
     //    image: "",
@@ -13,9 +13,9 @@ $(function () {
     //$.LoadingOverlay("show");
 
     new DataTable('#acervoTable', {
-        columnDefs: [
-            { orderable: false, target: [9] }
-        ],
+        //columnDefs: [
+        //    { orderable: false, target: [9] }
+        //],
         layout: {
             bottomEnd: {
                 paging: {
@@ -94,17 +94,6 @@ $(function () {
             },
             "infoEmpty": "No hay datos para mostrar"
         }
-    })
-
-    $('#acervoTable').on('click', 'tbody tr td a#remove_register', function (e) {
-        let data = $(this).closest('tr').data(),
-            coloca = data['coloca'],
-            title = data['title'],
-            text = "El registro no se podrá recuperar",
-            icon = "warning",
-            rute = '/delete_acervo/'
-        // Llama el SweetAlert del script notification
-        register_deleteSwal(title, coloca, text, icon, rute)
     })
 
     $('#acervoTable').on('click', 'tbody tr td a#more_info', function () {
@@ -218,6 +207,17 @@ $(function () {
             + '</div>');
 
         $('#more_info_modal').modal('show')
+    })
+
+    $('#acervoTable').on('click', 'tbody tr td a#remove_register', function (e) {
+        let data = $(this).closest('tr').data(),
+            coloca = data['coloca'],
+            title = data['title'],
+            text = "El registro no se podrá recuperar",
+            icon = "warning",
+            rute = '/delete_acervo/'
+        // Llama el SweetAlert del script notification
+        register_deleteSwal(title, coloca, text, icon, rute)
     })
 })
 
