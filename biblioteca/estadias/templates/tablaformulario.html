@@ -58,7 +58,10 @@
                         <td>{{p.empresa}}</td>
                         <td>{{p.carrera}}</td>
                         <td class="text-center">
+                            <!--a type="button" target="_blank" id="reporte_view"><i class="fas fa-file-pdf"
+                                    style="color: #cf2121;"></i></a-->
                             <a href="#" target="_blank"><i class="fas fa-file-pdf" style="color: #cf2121;"></i></a>
+
                         </td>
                     </tr>
                     {% endfor %}
@@ -68,7 +71,7 @@
     </div>
     <!-- /.content -->
 </div>
-<script>
+<!--script>
     function agregarFila() {
         // Obtener los valores del formulario
         var proyecto = document.getElementById("proyecto").value;
@@ -79,7 +82,7 @@
 
 
     }
-</script>
+</script-->
 <!-- Se incluye el html de modal -->
 {% include 'modal_registro.html' %}
 {% endblock %}

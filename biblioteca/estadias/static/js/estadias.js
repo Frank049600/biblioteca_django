@@ -81,12 +81,12 @@ $(function () {
         }
     })
 
-    $('#ProyectosTable').on('click', 'tbody tr td a#view_report', function (e) {
-        console.log('llega')
+    $('#ProyectosTable').on('click', 'tbody tr td a#reporte_view', function (e) {
         let data = $(this).closest('tr').data(),
             rute = data['report']
-        if (rute != 'undefined') {
-            location.href = window.location.origin + '/view_report/' + rute
+        if (rute) {
+            console.log(rute)
+            //window.open('files/' + rute)
         }
     })
 

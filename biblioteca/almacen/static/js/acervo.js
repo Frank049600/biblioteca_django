@@ -97,6 +97,7 @@ $(document).ready(function () {
     })
 
     $('#acervoTable').on('click', 'tbody tr td a#more_info', function () {
+        // Se obtienen todos los datos de la tabla
         let data = $(this).closest('tr').data(),
             title = data['title'],
             autor = data['autor'],
@@ -108,6 +109,7 @@ $(document).ready(function () {
             type_adqui = data['adqui'],
             state = data['state']
 
+        // Se detecta el tipo de estado para colocar le nombre completo
         if (state == 'EXC') {
             estado = 'Excelente'
         } else if (state == 'BUE') {
@@ -118,6 +120,7 @@ $(document).ready(function () {
             estado = 'Malo'
         }
 
+        // Se agrega todo el elemento html iterando la información obtenida
         $('#show_more').append('<div class="info-box mb-3" style="background-color: #3c6382; color: white;">'
             + '<span class="info-box-icon"><i class="fas fa-heading"></i></span>'
             + '<div class="info-box-content">'
@@ -206,9 +209,16 @@ $(document).ready(function () {
             + '</div>'
             + '</div>');
 
+        // Se abre el modal una vez cargada la información
         $('#more_info_modal').modal('show')
+        // Se detecta el cerrado del modal
+        $('#more_info_modal').on('hidden.bs.modal', function () {
+            // Se realiza el borrado de los elementos hijo de la etiqueta indicada
+            $('#show_more').children().remove()
+        })
     })
 
+    // Función para el borrado de elementos
     $('#acervoTable').on('click', 'tbody tr td a#remove_register', function (e) {
         let data = $(this).closest('tr').data(),
             coloca = data['coloca'],
