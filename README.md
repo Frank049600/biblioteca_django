@@ -1,5 +1,5 @@
 # biblioteca_django
-# De este modo no tendremos problemas al correr el entorno virtual que haya mos creado en nuestra maquina
+# De este modo no tendremos problemas al correr el entorno virtual que hayamos creado en nuestra maquina
 # Este archivo .gitignore solo es visible en GitHub
 #
 # Entra en la carpeta que se clono
