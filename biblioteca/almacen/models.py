@@ -9,16 +9,22 @@ class acervo_model(models.Model):
         REGULAR = 'REG', _('Regular')
         MALO = 'MAL', _('Malo')
 
-    titulo = models.CharField(max_length=100,verbose_name="titulo",null=False,blank=False)
-    autor = models.CharField(max_length=100,verbose_name="Autor",null=False,blank=False)
-    editorial = models.CharField(max_length=100,verbose_name="Editorial",null=False,blank=False)
-    cant = models.IntegerField(verbose_name="Cantidad",null=False,blank=False)
-    colocacion = models.CharField(max_length=100,verbose_name="Colocación", null=False, blank=False)
-    edicion = models.CharField(max_length=100, verbose_name="Edición", null=False, blank=False)
-    año = models.IntegerField(verbose_name="Año de edición", null=False, blank=False)
-    type_adqui = models.CharField(max_length=100,verbose_name="Tipo de adquisición", null=False, blank=False)
-    estado = models.CharField(max_length=3, verbose_name="Estado del libro",null=False, blank=False, choices=state.choices, default=state.EXCELENTE)
-    fechaRegistro = models.DateField(verbose_name="Fecha de Registro", null=False, blank=False)
+    class format(models.TextChoices):
+        LIBRO = 'book', _('Libro')
+        DISCO = 'disc', _('Disco')
+
+    titulo = models.CharField(max_length=100,verbose_name="titulo", null=True, blank=True)
+    autor = models.CharField(max_length=100,verbose_name="Autor", null=True, blank=True)
+    editorial = models.CharField(max_length=100,verbose_name="Editorial", null=True, blank=True)
+    cant = models.IntegerField(verbose_name="Cantidad", null=True, blank=True)
+    colocacion = models.CharField(max_length=100,verbose_name="Colocación", null=True, blank=True)
+    edicion = models.CharField(max_length=100, verbose_name="Edición", null=True, blank=True)
+    anio = models.CharField(max_length=20,verbose_name="Año de edición", null=True, blank=True)
+    adqui = models.CharField(max_length=20,verbose_name="Tipo de adquisición", null=True, blank=True)
+    estado = models.CharField(max_length=3, verbose_name="Estado", choices=state.choices, default=state.EXCELENTE, null=True, blank=True)
+    formato = models.CharField(max_length=5, verbose_name="formato", choices=format.choices, default=format.LIBRO, null=True, blank=True)
+    fecha_registro = models.DateField(verbose_name="Fecha de Registro", null=True, blank=True)
+    fecha_edicion = models.DateField(verbose_name="Fecha de actualización", null=True, blank=True)
 
     def _str_(self):
         return self.titulo

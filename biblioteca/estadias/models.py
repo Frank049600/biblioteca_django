@@ -30,10 +30,10 @@ class estadias(models.Model):
         help_text="Prioridad de la tarea"
     )
 
-   reporte = models.FileField(null=True,upload_to='reporte/')
-   convenio = models.FileField(null=True,upload_to='convenio/')
-   c_aceptacion= models.FileField(null=True,upload_to='c_aceptacion/')
-   cronograma= models.FileField(null=True,upload_to='cronograma/')
+   reporte = models.FileField('Reporte',upload_to='reporte/',null=True,blank=True)
+   # convenio = models.FileField(null=True,upload_to='convenio/')
+   # c_aceptacion= models.FileField(null=True,upload_to='c_aceptacion/')
+   # cronograma= models.FileField(null=True,upload_to='cronograma/')
 
 
    def _str_(self):

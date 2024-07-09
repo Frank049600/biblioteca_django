@@ -81,12 +81,13 @@ $(function () {
         }
     })
 
-    $('#ProyectosTable').on('click', 'tbody tr td a#reporte_view', function (e) {
+    // Visualización de reporte de estadías //
+    $('#ProyectosTable').on('click', 'tbody tr td a#reporte_view', function () {
         let data = $(this).closest('tr').data(),
             rute = data['report']
         if (rute) {
-            console.log(rute)
-            //window.open('files/' + rute)
+            // Se obtiene la ruta del reporte, agregándole el complemento de la ruta
+            window.open('/media/' + rute)
         }
     })
 

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Proyectos de estadías{% endblock %}
+{% block content %}
+
+
+<div id="proyectos">
+    <section class="content-header mt-5">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Proyectos de estadías</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'inicio' %}"><i class="fas fa-home"
+                                    style="color: black;"></i></a></li>
+                        <li class="breadcrumb-item">Proyectos de Estadías</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <div class="content mx-4 mb-5 p-3">
+        <div id="contentTitle" class="row">
+            <div class="col-xl-6 align-self-center">
+                <h5 class="text-bold">Tabla de registro de Proyectos</h5>
+            </div>
+            <div class="col-xl-6">
+                <a type="button" id="btnPlusBook" class="btn float-right" data-bs-toggle="modal"
+                    data-bs-target="#modal_registro">Registrar Proyecto<i class="fas fa-plus ml-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive bg-white p-2">
+            <table id="ProyectosTable" class="cell-border stripe" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="text-center">Titulo del proyecto</th>
+                        <th class="text-center">Autor(res)</th>
+                        <th class="text-center">Asesor(res)</th>
+                        <th class="text-center">PTC</th>
+                        <th class="text-center">Generación</th>
+                        <th class="text-center">Tipo de adquisición</th>
+                        <th class="text-center">Carrera</th>
+                        <th class="text-center">Empresa donde se llevo a cabo la estadia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ABC del desarrollo organizacional</td>
+                        <td>Carlos Augusto Audirac Camarena</td>
+                        <td>Trillas</td>
+                        <td class="text-right">9</td>
+                        <td>AMD 001</td>
+                        <td class="text-right">2°</td>
+                        <td class="text-right">1994</td>
+                        <td>N/A</td>
+                        <td>ADM</td>
+                        <td>Bueno</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.content -->
+</div>
+<!-- Se incluye el html de modal -->
+{% include 'modal_registro.html' %}
+{% endblock %}

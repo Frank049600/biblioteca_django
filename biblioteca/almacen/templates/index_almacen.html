@@ -48,39 +48,42 @@
                 </thead>
                 <tbody>
                     {% for list in list_acervo %}
-                    <tr data-coloca="{{ list.colocacion }}" data-title="{{ list.titulo }}" data-autor="{{ list.autor }}"
-                        data-edit="{{ list.editorial }}" data-cant="{{ list.cant }}" data-edicion="{{ list.edicion }}"
-                        data-anio="{{ list.año }}" data-adqui="{{ list.type_adqui }}" data-state="{{ list.estado }}">
+                    <tr id="info_data" data-coloca="{{ list.colocacion }}" data-title="{{ list.titulo }}"
+                        data-autor="{{ list.autor }}" data-edit="{{ list.editorial }}" data-cant="{{ list.cant }}"
+                        data-edicion="{{ list.edicion }}" data-anio="{{ list.año }}" data-adqui="{{ list.type_adqui }}"
+                        data-state="{{ list.estado }}" data-formato="{{ list.formato }}">
                         <td>{{ list.titulo }}</td>
                         <td>{{ list.autor }}</td>
                         <td>{{ list.edicion }}</td>
                         <td class="text-right">{{ list.cant }}</td>
                         <td>{{ list.colocacion }}</td>
                         <td class="text-center">
-                            {% if list.estado == "EXC" %}
+                            {% if list.estado == "Excelente" or list.estado == "EXC" %}
                             <i class="fas fa-circle" style="color:#2ed255"></i>
                             {% endif %}
-                            {% if list.estado == "BUE" %}
-                            <i class="fas fa-circle" style="color:rgb(210, 104, 18)"></i>
+                            {% if list.estado == "Bueno" or list.estado == "BUE" %}
+                            <i class="fas fa-circle" style="color:#d26812"></i>
                             {% endif %}
-                            {% if list.estado == "REG" %}
-                            <i class="fas fa-circle" style="color:rgb(237, 224, 87)"></i>
+                            {% if list.estado == "Regular" or list.estado == "REG" %}
+                            <i class="fas fa-circle" style="color:#ede057"></i>
                             {% endif %}
-                            {% if list.estado == "MAL" %}
-                            <i class="fas fa-circle" style="color:rgb(255, 0, 0)"></i>
+                            {% if list.estado == "Malo" or list.estado == "MAL" %}
+                            <i class="fas fa-circle" style="color:#ff0000"></i>
                             {% endif %}
                         </td>
                         <td class="text-center">
-                            <!-- Edita el registro -->
-                            <!--a href="button" data-bs-toggle="modal" data-bs-target="#more_info"><i
-                                    class="fas fa-eye text-info"></i></a-->
-                            <a type="button" title="info" id="more_info"><i class="fas fa-eye text-info"></i></a>
+                            <a type="button" id="more_info" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Registro completo"><i class="fas fa-eye text-success"></i></a>
                             <!-- Elimina el registro -->
                             <!--a href="{% url 'delete_acervo' list.colocacion %}" id="acervo_delete"
                                 data-coloca="{{ list.colocacion }}"><i class="fas fa-trash-alt text-danger"></i></a-->
-                            <a type="button" style="cursor: pointer;" id="remove_register">
+                            <!--a type="button" id="remove_register" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Eliminar">
                                 <i class="fas fa-trash-alt text-danger"></i>
-                            </a>
+                            </a-->
+                            <!-- Editar el registro -->
+                            <a type="button" id="edit_register" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Editar"><i class="fas fa-edit text-info"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

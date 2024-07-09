@@ -43,3 +43,9 @@ table.dataTable.display>tbody>tr:nth-child(odd).selected>* {
 .card-info:not(.card-outline)>.card-header {
     background-color: #3c6382 !important;
 }
+
+#acervo_add #tbl_addBook #btnModalSend,
+#btnModalUpdate {
+    background-color: #0a3d62 !important;
+    color: white;
+}

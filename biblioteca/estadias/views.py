@@ -13,13 +13,14 @@ from django.contrib import auth
 def modal_registro(request):
         return render(request, 'modal_registro.html')
 
-def index_proyectos (request):
-        reporte=estadias.objects.all()
-        return render(request,'tablaformulario.html',{"reporte":reporte})
+def index_proyectos(request):
+        side_code = 300
+        reporte = estadias.objects.all()
+        return render(request,'index_proyectos.html',{"reporte":reporte, "side_code":side_code})
 
-def vistaalumnos(request):
-        reporte=estadias.objects.all()
-        return render(request,'vistaalumnos.html',{"reporte":reporte})
+def vista_alumnos(request):
+        reporte = estadias.objects.all()
+        return render(request,'vista_alumnos.html',{"reporte":reporte})
 
 def file_update(files):
         reporte = ''
@@ -42,24 +43,25 @@ def estadias_registro(request):
             asesor_empresarial=request.POST['asemp']
             carrera=request.POST['carrera']
             # Sección de archivos
-            name_ref = []
-            type_files = ['reporte', 'convenio', 'c_aceptacion', 'cronograma']
-            for file in range(0,len(request.FILES)):
-                    name_ref.append(file_new_name(alumno, request.FILES[type_files[file]].name))
-
+            # name_ref = []
+            # type_files = ['reporte', 'convenio', 'c_aceptacion', 'cronograma']
+            # for file in range(0,len(request.FILES)):
+            #         name_ref.append(file_new_name(alumno, request.FILES[type_files[file]].name))
+            name_ref = file_new_name(alumno, request.FILES['reporte'].name)
             fs = FileSystemStorage()
             # Archivo reporte
-            reporte = fs.save('re_' + name_ref[0], request.FILES['reporte'])
-            url_report = fs.url(reporte)
+            reporte = fs.save(name_ref, request.FILES['reporte'])
+            # url_report = fs.url(reportes)
+            # reporte = request.FILES['reporte']
             # Archivo Convenio
-            convenio = fs.save('co_' + name_ref[1], request.FILES['convenio'])
-            url_convenio = fs.url(convenio)
-            # Archivo c_aceptacion
-            c_aceptacion = fs.save('ca_' + name_ref[2], request.FILES['c_aceptacion'])
-            url_c_aceptacion = fs.url(c_aceptacion)
-            # Archivo cronograma
-            cronograma = fs.save('cr_' + name_ref[3], request.FILES['cronograma'])
-            url_cronograma = fs.url(cronograma)
+            # convenio = fs.save('co_' + name_ref[1], request.FILES['convenio'])
+            # url_convenio = fs.url(convenio)
+            # # Archivo c_aceptacion
+            # c_aceptacion = fs.save('ca_' + name_ref[2], request.FILES['c_aceptacion'])
+            # url_c_aceptacion = fs.url(c_aceptacion)
+            # # Archivo cronograma
+            # cronograma = fs.save('cr_' + name_ref[3], request.FILES['cronograma'])
+            # url_cronograma = fs.url(cronograma)
 
             proyectos=estadias.objects.create(
               proyecto= proyecto,
@@ -69,10 +71,10 @@ def estadias_registro(request):
               empresa= empresa,
               asesor_empresarial=asesor_empresarial,
               carrera=carrera,
-              reporte=url_report,
-              convenio=url_convenio,
-              c_aceptacion=url_c_aceptacion,
-              cronograma=url_cronograma
+              reporte=reporte
+              # convenio=url_convenio,
+              # c_aceptacion=url_c_aceptacion,
+              # cronograma=url_cronograma
             )
 
             return redirect('proyectos')
@@ -89,7 +91,7 @@ def view_report(request, report_name):
         # MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
         dd(report_name)
         # reporte=estadias.objects.all()
-        return render(request,'tablaformulario.html')
+        # return render(request,'tablaformulario.html')
         #print(MEDIA_ROOT)
         #test_file=open(BASE_DIR + reporte)
         ##response = HttpResponse()

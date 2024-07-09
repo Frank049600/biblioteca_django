@@ -5,6 +5,7 @@ import traceback
 from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 from static.exceptions import DebugException
+import environ
 
 class DebugMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
@@ -23,8 +24,8 @@ MIDDLEWARE = [
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MEDIA_URL = '/files/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'files/')
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 
@@ -54,12 +55,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'session_security',
+    'import_export',
 
     # Mis APPS
     'almacen.apps.AlmacenConfig',
     'login.apps.LoginConfig',
     'inicio.apps.InicioConfig',
     'estadias.apps.EstadiasConfig',
+    'sistema.apps.SistemaConfig',
+    'sito.apps.SitoConfig',
+    'usuario.apps.UsuarioConfig'
 
     ]
 
@@ -110,10 +115,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    #  'sito': {
+    #    'ENGINE': 'mssql',
+    #    'HOST': env('DB_HOST_SITO'),
+    #    'NAME': env('DB_NAME_SITO'),
+    #    'USER': env('DB_USER_SITO'),
+    #    'PASSWORD': env('DB_PASS_SITO'),
+    #    'PORT': env('DB_PORT_SITO'),
+    #    'OPTIONS':  {
+    #        'driver': 'ODBC Driver 17 for SQL Server',
+    #    }
+    #}
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -155,3 +169,12 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'sistema.UsuarioAcceso'
+
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter']
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Configuración archivos Media, para guardado de documentos
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
