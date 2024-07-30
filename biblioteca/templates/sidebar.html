@@ -83,7 +83,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    {% if side_code == 300 %}
+                    {% if side_code == 300 or side_code == 301 %}
                     <a href="#" class="nav-link active">
                         {% else %}
                         <a href="#" class="nav-link">
@@ -96,7 +96,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                {% if side_code == 300 %}
+                                {% if side_code == 300 or side_code == 301 %}
                                 <a href="{% url 'proyectos' %}" class="nav-link active">
                                     {% else %}
                                     <a href="{% url 'proyectos' %}" class="nav-link">

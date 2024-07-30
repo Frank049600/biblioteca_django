@@ -87,7 +87,10 @@ $(function () {
             rute = data['report']
         if (rute) {
             // Se obtiene la ruta del reporte, agregándole el complemento de la ruta
-            window.open('/media/' + rute)
+            // window.open('/media/' + rute)
+            let reporte = '/media/' + rute
+            $('#iframe').modal('show');
+            $('#data_iframe').attr('src', reporte)
         }
     })
 

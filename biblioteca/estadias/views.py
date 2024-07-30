@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import estadias
 import os
-from pathlib import Path
-from django.http import HttpResponse
+from django.http import FileResponse
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from static.helpers import file_new_name
 from static.utils import dd
-from django.contrib import auth
+# from django.contrib import auth
+# Uso de iframe
+from django.views.decorators.clickjacking import xframe_options_deny
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 # Create your views here.
 def modal_registro(request):
@@ -85,15 +87,16 @@ def my_view(request,reporte):
         return render(request,'vistaalumnos.html',{'reporte':p})
 
 # Función para mostrar file report
-def view_report(request, report_name):
-        # BASE_DIR = Path(__file__).resolve().parent.parent
-        # MEDIA_URL = '/files/'
-        # MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
-        dd(report_name)
-        # reporte=estadias.objects.all()
-        # return render(request,'tablaformulario.html')
-        #print(MEDIA_ROOT)
-        #test_file=open(BASE_DIR + reporte)
-        ##response = HttpResponse()
-        ##response['Content-Type'] = 'application/pdf'
-        #return test_file
+def view_report(request, report_rute):
+        side_code = 301
+        if report_rute != '':
+            ruta = settings.MEDIA_URL + report_rute
+        else:
+            ruta = ''
+        return render(request, 'iframe_pdf.html', {'reporte': ruta, "side_code":side_code})
+
+def servir_pdf(request, report_rute):
+    file_path = os.path.join(settings.MEDIA_ROOT, report_rute)
+    response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="mi_documento.pdf"'
+    return response

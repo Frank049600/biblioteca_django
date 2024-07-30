@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}PDF preview{% endblock %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div id="proyectos_preview">
+    <section class="content-header mt-5">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Reporte de estadías</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'inicio' %}"><i class="fas fa-home"
+                                    style="color: black;"></i></a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'proyectos' %}" style="color: black;">Proyectos de
+                                estadías</a>
+                        </li>
+                        <li class="breadcrumb-item text-info">Preview</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <div class="content mx-4 mb-5 p-3">
+        <iframe src="{{ reporte }}" frameborder="0" width="100%" height="800px" style="border: none;"></iframe>
+    </div>
+</div>
+{% endblock %}

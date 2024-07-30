@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 from static.exceptions import DebugException
 import environ
+from static.utils import dd
 
 class DebugMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
@@ -24,7 +25,9 @@ MIDDLEWARE = [
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
+env = environ.Env(
+    DEBUG=(bool, True)
+)
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
@@ -36,7 +39,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-i-quay)0vi@ofqo!o*js^01l_p7s+sh^c7!mdydd53y0x5lb3w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -110,23 +114,33 @@ WSGI_APPLICATION = 'biblioteca.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+DB_PASS_SITO = env('DB_PASS_SITO')
+# print(f'DB_PASS_SITO = {DB_PASS_SITO}')
+print(f'{DB_PASS_SITO}')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    #  'sito': {
-    #    'ENGINE': 'mssql',
-    #    'HOST': env('DB_HOST_SITO'),
-    #    'NAME': env('DB_NAME_SITO'),
-    #    'USER': env('DB_USER_SITO'),
-    #    'PASSWORD': env('DB_PASS_SITO'),
-    #    'PORT': env('DB_PORT_SITO'),
-    #    'OPTIONS':  {
-    #        'driver': 'ODBC Driver 17 for SQL Server',
-    #    }
-    #}
+      'sito': {
+        'ENGINE': 'mssql',
+        'NAME': env('DB_NAME_SITO'),
+        'USER': env('DB_USER_SITO'),
+        # 'PASSWORD': '$A7$P#p?KHdb',
+        'PASSWORD': DB_PASS_SITO,
+        'HOST': env('DB_HOST_SITO'),
+        'PORT': env('DB_PORT_SITO'),
+        'OPTIONS':  {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            #'driver': 'FreeTDS',
+            #'unicode_results': True,
+            #'host_is_server': True,
+            #'driver_supports_utf8': True,
+            #'extra_params': 'tds_version=7.4',
+        }
+
+    }
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -178,3 +192,5 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Configuración archivos Media, para guardado de documentos
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

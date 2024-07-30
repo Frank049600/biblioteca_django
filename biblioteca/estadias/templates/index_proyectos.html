@@ -58,11 +58,10 @@
                         <td>{{p.empresa}}</td>
                         <td>{{p.carrera}}</td>
                         <td class="text-center">
-                            <a type="button" id="reporte_view" data-bs-toggle="tooltip" data-bs-placement="top"
+                            <!--a type="button" id="reporte_view" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Ver reporte"><i class="fas fa-file-pdf" style="color: #cf2121;"></i></a-->
+                            <a href="{% url 'view_report' p.reporte %}" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="Ver reporte"><i class="fas fa-file-pdf" style="color: #cf2121;"></i></a>
-                            <!--a href="#" target="_blank"><i class="fas fa-file-pdf"
-                                    style="color: #cf2121;"></i></a-->
-
                         </td>
                     </tr>
                     {% endfor %}
@@ -85,5 +84,5 @@
     }
 </script-->
 <!-- Se incluye el html de modal -->
-{% include 'modal_registro.html' %}
+{% include 'modals.html' %}
 {% endblock %}

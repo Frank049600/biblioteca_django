@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from login.views import Login, logoutUser
 from estadias.views import vista_alumnos as alumnos
 from estadias.views import estadias_registro, my_view
-from estadias.views import view_report
+from estadias.views import view_report, servir_pdf
 from usuario.views import login_view
 #
 from django.conf import settings
@@ -33,7 +33,8 @@ urlpatterns = [
     path('estadias_registro/',login_required(estadias_registro)),
     path('detail/<reporte>',my_view,name='detail_view'),
 
-    path('view_report/<str:report_name>', login_required(view_report), name='view_report'),
+    path('view_report/<report_rute>', login_required(view_report), name='view_report'),
+     path('view_report/<report_rute>', login_required(servir_pdf), name='servir_pdf'),
 
     # aplicación de sesión
     path('session-security/', include('session_security.urls')),

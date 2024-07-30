@@ -21,7 +21,7 @@ def login_view(request):
 
             # Buscar si el usuario existe en sistema_usuario
             sistema_usuario = UsuarioAcceso.objects.filter(login=login).first()
-
+            print(sistema_usuario)
             if sistema_usuario is not None:
                 # Si el usuario existe en sistema_usuario, intentamos autenticarlo
                 usuario = authenticate(request, login=login, password=password)
@@ -48,7 +48,7 @@ def login_view(request):
                         staff=True
                     )
                     sistema_usuario.set_password(password)
-                    sistema_usuario.save()
+                    sistema_usuario.save(using="sito")
 
                     # Obtener los grupos de seguridad del usuario
                     usuario_grupo_seguridad = UsuarioGrupoSeguridad.objects.filter(cve_persona=usuario_existente.cve_persona)

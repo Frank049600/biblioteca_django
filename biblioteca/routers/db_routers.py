@@ -1,6 +1,6 @@
 class AuthRouter:
 
-    route_app_labels = {'sito'}
+    route_app_labels = {'sito', 'usuario'}
 
     def db_for_read(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
