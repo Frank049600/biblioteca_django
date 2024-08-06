@@ -80,23 +80,22 @@ $(function () {
             "infoEmpty": "No hay datos para mostrar"
         }
     })
-
-    // Visualización de reporte de estadías //
-    $('#ProyectosTable').on('click', 'tbody tr td a#reporte_view', function () {
-        let data = $(this).closest('tr').data(),
-            rute = data['report']
-        if (rute) {
-            // Se obtiene la ruta del reporte, agregándole el complemento de la ruta
-            // window.open('/media/' + rute)
-            let reporte = '/media/' + rute
-            $('#iframe').modal('show');
-            $('#data_iframe').attr('src', reporte)
-        }
-    })
-
-
-    /** Función para cerrado de modal */
-    $('#modal_registro').on('click', 'a#close', function () {
-        $('#modal_registro').modal('hide')
-    })
 })
+
+let response
+response = $('#response_sweetalert').data('resp')
+
+let title, text, icon
+if (response == 'success') {
+    title = 'Correcto'
+    text = 'Registro exitoso'
+    icon = 'success'
+    estadia_alert(title, text, icon)
+}
+
+if (response == 'error') {
+    title = 'Error'
+    text = '¡Algo salio mal!'
+    icon = 'error'
+    estadia_alert(title, text, icon)
+}

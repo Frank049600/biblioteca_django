@@ -17,6 +17,7 @@
             <ul class="text-white ml-0 pl-0 text-bold text-center" style=" list-style: none;">
                 <li>
                     <span>{{ user }}</span>
+                    <span>{{ persona }}</span>
                 </li>
                 <li>
                     <span>{{ user.email }}</span>
@@ -53,7 +54,7 @@
                             </p>
                         </a>
                 </li>
-                <li class="nav-item">
+                <!--li class="nav-item">
                     <a href="#" class="nav-link desactive">
                         <i class="nav-icon fas fa-book-reader"></i>
                         <p>
@@ -64,24 +65,12 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="../../index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-book"></i>
                                 <p>Prestamos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Prestamos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li-->
                 <li class="nav-item">
                     {% if side_code == 300 or side_code == 301 %}
                     <a href="#" class="nav-link active">
@@ -90,7 +79,7 @@
                             {% endif %}
                             <i class="fas fa-boxes"></i>
                             <p>
-                                Estadias
+                                Estadías
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -101,15 +90,9 @@
                                     {% else %}
                                     <a href="{% url 'proyectos' %}" class="nav-link">
                                         {% endif %}
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Registro de Proyectos</p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <p>Proyectos</p>
                                     </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'alumnos' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Proyectos de estadias</p>
-                                </a>
                             </li>
                         </ul>
                 </li>

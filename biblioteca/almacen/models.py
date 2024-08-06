@@ -23,8 +23,11 @@ class acervo_model(models.Model):
     adqui = models.CharField(max_length=20,verbose_name="Tipo de adquisición", null=True, blank=True)
     estado = models.CharField(max_length=3, verbose_name="Estado", choices=state.choices, default=state.EXCELENTE, null=True, blank=True)
     formato = models.CharField(max_length=5, verbose_name="formato", choices=format.choices, default=format.LIBRO, null=True, blank=True)
-    fecha_registro = models.DateField(verbose_name="Fecha de Registro", null=True, blank=True)
-    fecha_edicion = models.DateField(verbose_name="Fecha de actualización", null=True, blank=True)
+    fecharegistro = models.DateField(verbose_name="Fecha de Registro", null=True, blank=True)
+    fechaedicion = models.DateField(verbose_name="Fecha de actualización", null=True, blank=True)
 
     def _str_(self):
         return self.titulo
+
+    class Meta:
+        verbose_name = 'Acervo registros'

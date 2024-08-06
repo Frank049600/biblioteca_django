@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
@@ -7,6 +8,8 @@ from sistema.models import UsuarioAcceso
 from sito.models import Usuario, UsuarioGrupoSeguridad
 from usuario.forms import LoginForm, RegisterUserForm, PerfilForm
 from static.helpers import dd
+from sito.models import Persona
+from django.urls import reverse
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -21,7 +24,7 @@ def login_view(request):
 
             # Buscar si el usuario existe en sistema_usuario
             sistema_usuario = UsuarioAcceso.objects.filter(login=login).first()
-            print(sistema_usuario)
+            persona = Persona.objects.filter(cve_persona=sistema_usuario.cve_persona).first()
             if sistema_usuario is not None:
                 # Si el usuario existe en sistema_usuario, intentamos autenticarlo
                 usuario = authenticate(request, login=login, password=password)
@@ -48,7 +51,7 @@ def login_view(request):
                         staff=True
                     )
                     sistema_usuario.set_password(password)
-                    sistema_usuario.save(using="sito")
+                    sistema_usuario.save()
 
                     # Obtener los grupos de seguridad del usuario
                     usuario_grupo_seguridad = UsuarioGrupoSeguridad.objects.filter(cve_persona=usuario_existente.cve_persona)

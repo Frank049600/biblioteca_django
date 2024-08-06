@@ -32,3 +32,6 @@
 # Ejecutar runserver
 # py manage.py runserver
 #
+#
+# Librerías adicionales
+# pip install django-import-export

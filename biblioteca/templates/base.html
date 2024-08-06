@@ -89,25 +89,32 @@
         <script src="{% static 'lib/highcharts/export-data.js' %}"></script>
         <script src="{% static 'lib/highcharts/accessibility.js' %}"></script>
         <!-- Script propios -->
+        <script src="{% static 'js/notification.js' %}"></script>
         <script src="{% static 'js/inicio.js' %}"></script>
         <script src="{% static 'js/header.js' %}"></script>
         <script src="{% static 'js/acervo.js' %}"></script>
         <script src="{% static 'js/estadias.js' %}"></script>
-        <script src="{% static 'js/notification.js' %}"></script>
         <!-- Tooltip (configuración) (etiquetas para los botones)-->
         <script src="{% static 'js/tooltip.js' %}"></script>
-        scr
 
+        <!-- Mensaje de alerta de registro exitoso -->
         {% if messages %}
-        {% for m in messages %}
+        {% for message in messages %}
         <script>
+            let icons = {
+                'debug': 'info',
+                'info': 'info',
+                'Éxito': 'success',
+                'warning': 'warning',
+                'Error': 'error'
+            };
             Swal.fire({
-                title: "Correcto",
-                icon: "success",
-                text: "{{m}}",
+                title: '{% if message.tags %}{{ message.tags|title }}{% else %}Mensaje{% endif %}',
+                text: '{{ message }}',
+                icon: icons['{{ message.tags|title }}'],
                 showConfirmButton: false,
                 timer: 2100
-            })
+            });
         </script>
         {% endfor %}
         {% endif %}

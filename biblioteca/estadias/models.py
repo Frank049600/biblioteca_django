@@ -1,12 +1,12 @@
 from django.db import models
-class estadias(models.Model):
+class model_estadias(models.Model):
 
-   proyecto=models.CharField(max_length=150)
-   alumno=models.CharField(max_length=150)
-   asesor_academico=models.CharField(max_length=150)
-   generacion=models.CharField(max_length=12)
-   empresa=models.CharField(max_length=150)
-   asesor_empresarial=models.CharField(max_length=150)
+   proyecto=models.CharField(max_length=255)
+   alumno=models.CharField(max_length=255)
+   asesor_academico=models.CharField(max_length=255)
+   generacion=models.CharField(max_length=255)
+   empresa=models.CharField(max_length=255)
+   asesor_orga=models.CharField(max_length=255)
    ELECCION_CARRERA = (
         ("ADC","ADC"),
         ("MET", "MET"),
@@ -21,7 +21,6 @@ class estadias(models.Model):
         ("ISIP","ISIP"),
         ("IPQ","IPQ"),
         ("LGCH","LGCH"))
-
    carrera=models.CharField(
         max_length=20,
         choices=ELECCION_CARRERA,
@@ -29,17 +28,12 @@ class estadias(models.Model):
         blank=True,
         help_text="Prioridad de la tarea"
     )
-
-   reporte = models.FileField('Reporte',upload_to='reporte/',null=True,blank=True)
-   # convenio = models.FileField(null=True,upload_to='convenio/')
-   # c_aceptacion= models.FileField(null=True,upload_to='c_aceptacion/')
-   # cronograma= models.FileField(null=True,upload_to='cronograma/')
-
+   reporte = models.FileField('Reporte',null=True,blank=True)
 
    def _str_(self):
         return self.alumno
 
    class Meta:
-        verbose_name="estadias"
-        verbose_name_plural='estadias'
+        verbose_name="estadía"
+        verbose_name_plural='estadías'
 

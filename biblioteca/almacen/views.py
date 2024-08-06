@@ -26,9 +26,10 @@ def acervo_registro(request):
             edicion = form.cleaned_data['edicion']
             anio = form.cleaned_data['anio']
             adqui = form.cleaned_data['adqui']
-            estado = form.cleaned_data['estado']
             formato = form.cleaned_data['formato']
-            fecha_registro = datetime.now()
+            estado = form.cleaned_data['estado']
+            fecharegistro = datetime.now()
+            fechaedicion = datetime.now()
             acervo = acervo_model.objects.create(
                     titulo = titulo,
                     autor = autor,
@@ -38,19 +39,20 @@ def acervo_registro(request):
                     edicion = edicion,
                     anio = anio,
                     adqui = adqui,
-                    estado = estado,
                     formato = formato,
-                    fecha_registro = fecha_registro,
+                    estado = estado,
+                    fecharegistro = fecharegistro,
+                    fechaedicion = fechaedicion
             )
-            messages.success(request, 'Registro agregado')
+            messages.add_message(request, messages.SUCCESS, 'Registro agregado')
             return redirect('acervo')
         else:
             # Si el formulario no es válido, vuelve a renderizar el formulario con errores
-            messages.error(request, '¡Algo salio mal!')
+            messages.add_message(request, messages.ERROR, '¡Algo salio mal!')
             return redirect('acervo')
     else:
         form = registro_form()
-        messages.error(request, '¡Algo salio mal!')
+        messages.add_message(request, messages.ERROR, '¡Algo salio mal!')
         return redirect('acervo')
 
 def delete_acervo(request, col):
@@ -80,18 +82,18 @@ def edit_acervo(request):
             acervo_update.adqui = form.cleaned_data['adqui']
             acervo_update.estado = form.cleaned_data['estado']
             acervo_update.formato = form.cleaned_data['formato']
-            acervo_update.fecha_edicion = datetime.now()
+            acervo_update.fechaedicion = datetime.now()
             acervo_update.save()
             # Muestra un mensaje de éxito si no existe un problema
             # Retorna hacia Acervo
-            messages.success(request, 'Registro actualizado')
+            messages.add_message(request, messages.SUCCESS, 'Registro actualizado')
             return redirect('acervo')
         else:
             # Si el formulario no es válido, vuelve a renderizar el formulario con errores
             form = registro_form()
-            messages.error(request, '¡Algo salio mal!')
+            messages.add_message(request, messages.ERROR, '¡Algo salio mal!')
             return redirect('acervo')
     else:
         form = registro_form()
-        messages.error(request, '¡Algo salio mal!')
+        messages.add_message(request, messages.ERROR, '¡Algo salio mal!')
         return redirect('acervo')

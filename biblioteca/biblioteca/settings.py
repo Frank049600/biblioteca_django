@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 import pprint
-import traceback
 from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 from static.exceptions import DebugException
 import environ
+from django.contrib.messages import constants as messages
 from static.utils import dd
 
 class DebugMiddleware(MiddlewareMixin):
@@ -45,6 +45,20 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = []
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
+MESSAGE_TAGS = {
+    messages.ERROR: "Error",
+    messages.SUCCESS: 'Éxito',
+    'icon': 'success'
+}
+
+CUSTOM_MESSAGE_ICONS = {
+    'debug': 'info',
+    'info': 'info',
+    'Éxito': 'success',
+    'warning': 'warning',
+    'Error': 'error',
+}
 
 SESSION_COOKIE_HTTPONLY = True
 
@@ -116,7 +130,6 @@ WSGI_APPLICATION = 'biblioteca.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DB_PASS_SITO = env('DB_PASS_SITO')
 # print(f'DB_PASS_SITO = {DB_PASS_SITO}')
-print(f'{DB_PASS_SITO}')
 
 DATABASES = {
     'default': {
@@ -127,8 +140,8 @@ DATABASES = {
         'ENGINE': 'mssql',
         'NAME': env('DB_NAME_SITO'),
         'USER': env('DB_USER_SITO'),
-        # 'PASSWORD': '$A7$P#p?KHdb',
-        'PASSWORD': DB_PASS_SITO,
+        'PASSWORD': '$A7$P#p?KHdb',
+        # 'PASSWORD': DB_PASS_SITO,
         'HOST': env('DB_HOST_SITO'),
         'PORT': env('DB_PORT_SITO'),
         'OPTIONS':  {
@@ -139,7 +152,6 @@ DATABASES = {
             #'driver_supports_utf8': True,
             #'extra_params': 'tds_version=7.4',
         }
-
     }
 }
 # Password validation

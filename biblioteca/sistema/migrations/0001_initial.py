@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Acceso Usuario',
                 'verbose_name_plural': 'Acceso Usuarios',
-                'db_table': 'sistema_usuario',
+                # 'db_table': 'sistema_usuario',
             },
             managers=[
                 ('object', django.db.models.manager.Manager()),

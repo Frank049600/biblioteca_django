@@ -1,17 +1,4 @@
 $(document).ready(function () {
-    // Overlay
-    //$.LoadingOverlay("show", {
-    //    image: "",
-    //    fontawesome: "fa fa-cog fa-spin"
-    //});
-    //$.LoadingOverlaySetup({
-    //    background: "rgba(0, 0, 0, 0.5)",
-    //    image: "",
-    //    imageAnimation: "1.5s fadein",
-    //    imageColor: "#2A46B9"
-    //});
-    //$.LoadingOverlay("show");
-
     new DataTable('#acervoTable', {
         //columnDefs: [
         //    { orderable: false, target: [9] }
@@ -97,18 +84,19 @@ $(document).ready(function () {
     })
 
     // Se estructura la información para el modal
-    function struct_modal(title, autor, editorial, cantidad, colocacion, edicion, año, type_adqui, state) {
+    function struct_modal(title, autor, editorial, cantidad, colocacion, edicion, año, type_adqui, state, formato) {
         let match = {
             'EXC': 'Excelente',
             'BUE': 'Bueno',
             'REG': 'Regular',
             'MAL': 'Malo'
-        }
+        };
         for (let i = 0; i < 4; i++) {
             if (match[state.toString()] != undefined) {
                 state = match[state.toString()]
-            }
-        }
+            };
+        };
+        formato = formato == 'book' ? 'Libro' : (formato == 'disc' ? 'Disco' : '');
         let struct = '<div class="info-box mb-3" style="background-color: #3c6382; color: white;">'
             + '<span class="info-box-icon"><i class="fas fa-heading"></i></span>'
             + '<div class="info-box-content">'
@@ -186,12 +174,21 @@ $(document).ready(function () {
             + '</div>'
             + '</div>'
             + '</div>'
-            + '<div class="col-xl-6">'
+            + '<div class="col-xl-3">'
             + '<div class="info-box mb-3" style="background-color: #002078; color: white;">'
             + '<span class="info-box-icon"><i class="fas fa-eye"></i></span>'
             + '<div class="info-box-content">'
             + '<span class="info-box-text">Estado</span>'
             + '<span class="info-box-number">' + state + '</span>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '<div class="col-xl-3">'
+            + '<div class="info-box mb-3" style="background-color: #002078; color: white;">'
+            + '<span class="info-box-icon"><i class="fas fa-book fa-xs"></i>/<i class="fas fa-compact-disc fa-xs"></i></span>'
+            + '<div class="info-box-content">'
+            + '<span class="info-box-text">Formato</span>'
+            + '<span class="info-box-number">' + formato + '</span>'
             + '</div>'
             + '</div>'
             + '</div>'
@@ -211,10 +208,11 @@ $(document).ready(function () {
             edicion = data['edicion'],
             año = data['anio'],
             type_adqui = data['adqui'],
-            state = data['state']
+            state = data['state'],
+            formato = data['formato']
 
         // Se agrega todo el elemento html iterando la información obtenida
-        $('#show_more').append(struct_modal(title, autor, editorial, cantidad, colocacion, edicion, año, type_adqui, state));
+        $('#show_more').append(struct_modal(title, autor, editorial, cantidad, colocacion, edicion, año, type_adqui, state, formato));
 
         // Se abre el modal una vez cargada la información
         $('#more_info_modal').modal('show')
@@ -281,7 +279,7 @@ $(document).ready(function () {
         $('input[name="' + input_id[0] + '"]').val(moreInfo['title'])
         $('input[name="' + input_id[1] + '"]').val(moreInfo['autor']) // Campo Autor
         $('input[name="' + input_id[2] + '"]').val(moreInfo['edit']) // Campo editorial
-        $('input[name="' + input_id[3] + '"]').val(moreInfo['año']) // Campo año
+        $('input[name="' + input_id[3] + '"]').val(moreInfo['anio']) // Campo año
         $('input[name="' + input_id[4] + '"]').val(moreInfo['edicion']) // Campo edición
         $('input[name="' + input_id[5] + '"]').val(moreInfo['cant']) // Campo cantidad
         $('input[name="' + input_id[6] + '"]').val(moreInfo['coloca']) // Campo colocación

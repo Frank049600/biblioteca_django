@@ -1,3 +1,13 @@
+const estadia_alert = (title, text, icon) => {
+    Swal.fire({
+        title: title,
+        icon: icon,
+        text: text,
+        showConfirmButton: false,
+        timer: 2100
+    })
+}
+
 const register_deleteSwal = (title, coloca, text, icon, rute) => {
     Swal.fire({
         "title": title + ' - ' + coloca,

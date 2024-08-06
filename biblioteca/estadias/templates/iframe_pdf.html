@@ -23,8 +23,23 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    <div class="content mx-4 mb-5 p-3">
-        <iframe src="{{ reporte }}" frameborder="0" width="100%" height="800px" style="border: none;"></iframe>
+    <div id="iframe_card">
+        <div class="row ml-5">
+            <div class="col-xl-5">
+                <h5><strong>Alumno:</strong> {{ alumno.alumno }}</h5>
+            </div>
+            <div class="col-xl-2">
+                <h5><strong>Carrera:</strong> {{ alumno.carrera }}</h5>
+            </div>
+            <div class="col-xl-5">
+                <h5><strong>Nombre del proyecto:</strong> {{ alumno.proyecto }}</h5>
+            </div>
+        </div>
+        <div class="content mx-1 mb-5 p-3">
+            <!--iframe src="{{ reporte }}" frameborder="0" width="100%" height="800px" style="border: none;"></iframe-->
+            <embed src="{{ reporte }}#toolbar=0&navpanes=0&scrollbar=0&statusbar=0" type="application/pdf" width="100%"
+                height="600px" />
+        </div>
     </div>
 </div>
 {% endblock %}

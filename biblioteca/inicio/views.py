@@ -10,9 +10,9 @@ def index_inicio(request):
     format_libro = 0
     format_disco = 0
     for cant in datos:
-        if cant.formato == 'Libro':
+        if cant.formato == 'book':
             format_libro += 1
-        if cant.formato == 'Disco':
+        if cant.formato == 'disc':
             format_disco += 1
         total_book += cant.cant
     # Obtener el total por estados
@@ -22,13 +22,13 @@ def index_inicio(request):
     REG = 0
     MAL = 0
     for state in datos:
-        if state.estado == 'Excelente':
+        if state.estado == 'EXC':
             EXC += 1
-        if state.estado == 'Bueno':
+        if state.estado == 'BUE':
             BUE += 1
-        if state.estado == 'Regular':
+        if state.estado == 'REG':
             REG += 1
-        if state.estado == 'Malo':
+        if state.estado == 'MAL':
             MAL += 1
     # Se almacenan para el uso de al gráfica
     states.append([EXC,BUE,REG,MAL])
