@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from static.utils import dd
 from almacen.models import acervo_model
+from sito.models import Persona
 
 # Create your views here.
 def index_inicio(request):
@@ -34,4 +35,5 @@ def index_inicio(request):
     states.append([EXC,BUE,REG,MAL])
     # Suma total de estados (diferente a la suma de todos los libros)
     total_state = states[0][0] + states[0][1] + states[0][2]
+
     return render(request, 'index_inicio.html', { "total_book": total_book, "states": states[0], "total_state": total_state, "side_code":side_code, "cant_libros":format_libro, "cant_discos": format_disco })

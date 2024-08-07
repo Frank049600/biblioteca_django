@@ -24,8 +24,8 @@ def login_view(request):
 
             # Buscar si el usuario existe en sistema_usuario
             sistema_usuario = UsuarioAcceso.objects.filter(login=login).first()
-            persona = Persona.objects.filter(cve_persona=sistema_usuario.cve_persona).first()
             if sistema_usuario is not None:
+                persona = Persona.objects.get(cve_persona=sistema_usuario.cve_persona)
                 # Si el usuario existe en sistema_usuario, intentamos autenticarlo
                 usuario = authenticate(request, login=login, password=password)
                 if usuario is not None:
@@ -36,7 +36,8 @@ def login_view(request):
                     return redirect("inicio")
                 else:
                     # Credenciales incorrectas
-                    messages.error(request, "Por favor introduzca un nombre de usuario y contraseña correctos.")
+                    # messages.error(request, "Por favor introduzca un nombre de usuario y contraseña correctos.")
+                    messages.add_message(request, messages.ERROR, 'Por favor introduzca un nombre de usuario y contraseña correctos.')
                     return redirect('login')
             else:
                 # El usuario no existe en sistema_usuario, buscar en Usuario
@@ -67,7 +68,8 @@ def login_view(request):
                     return redirect("inicio")
                 else:
                     # El usuario no existe en ninguna de las tablas
-                    messages.error(request, "Por favor introduzca un nombre de usuario y contraseña correctos.")
+                    # messages.error(request, "Por favor introduzca un nombre de usuario y contraseña correctos.")
+                    messages.add_message(request, messages.ERROR, 'Por favor introduzca un nombre de usuario y contraseña correctos.')
                     return redirect('login')
 
     context = {
@@ -91,20 +93,24 @@ def perfil_view(request):
                 if request.user.avatar.name.endswith('default.png'):
                     # Si el avatar es default.png conservar imagen predeterminada.
                     form.save()
-                    messages.success(request, '¡Tu perfil ha sido actualizado!')
+                    # messages.success(request, '¡Tu perfil ha sido actualizado!')
+                    messages.add_message(request, messages.SUCCESS, '¡Tu perfil ha sido actualizado!')
                 else:
                     # Si el avatar es diferente a default.png eliminar la imagen.
                     request.user.avatar.delete()
                     form.save()
-                    messages.success(request, '¡Tu perfil ha sido actualizado!')
+                    # messages.success(request, '¡Tu perfil ha sido actualizado!')
+                    messages.add_message(request, messages.SUCCESS, '¡Tu perfil ha sido actualizado!')
             else:
                 # Conservar imagen actual en caso de no haber seleccionado otra.
                 user_perfil.avatar = user_perfil.avatar
                 user_perfil.save()
-                messages.warning(request, 'No seleccionaste una nueva imagen. Tu perfil no ha sido actualizado.')
+                # messages.warning(request, 'No seleccionaste una nueva imagen. Tu perfil no ha sido actualizado.')
+                messages.add_message(request, messages.WARNING, 'No seleccionaste una nueva imagen. Tu perfil no ha sido actualizado.')
             return redirect("usuario:perfil")
         else:
-            messages.error(request, 'Por favor corrige los errores del formulario.')
+            # messages.error(request, 'Por favor corrige los errores del formulario.')
+            messages.add_message(request, messages.ERROR, 'Por favor corrige los errores del formulario.')
     else:
         form = PerfilForm(instance=user_perfil)
     return render(request, 'usuario/perfil.html', {'form': form})

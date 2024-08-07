@@ -58,6 +58,7 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper mb-5">
+
                 {% block content %}{% endblock %}
             </div>
             {% include 'footer.html' %}
@@ -105,7 +106,7 @@
                 'debug': 'info',
                 'info': 'info',
                 'Éxito': 'success',
-                'warning': 'warning',
+                'Alerta': 'warning',
                 'Error': 'error'
             };
             Swal.fire({
