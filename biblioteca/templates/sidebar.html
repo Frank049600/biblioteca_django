@@ -19,7 +19,18 @@
                     <span>{{ user }}</span>
                 </li>
                 <li>
-                    <span>{{ user.cve_persona }}</span>
+                    <div class="row">
+                        {% if grupo == 'Alumno' %}
+                        <div class="col-xl-6">
+                            <span>{{ grupo }}</span>
+                        </div>
+                        <div class="col-xl-6">
+                            <span>{{ grupo_name }}</span>
+                        </div>
+                        {% else %}
+                        <span>{{ grupo }}</span>
+                        {% endif %}
+                    </div>
                 </li>
             </ul>
         </div>
@@ -29,6 +40,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
+                {% if grupo != 'Alumnos' %}
                 <li class="nav-item">
                     {% if side_code == 100 %}
                     <a href="{% url 'inicio' %}" class="nav-link active">
@@ -41,6 +53,8 @@
                             </p>
                         </a>
                 </li>
+                {% endif %}
+                {% if grupo != 'ALumnos' %}
                 <li class="nav-item">
                     {% if side_code == 200 %}
                     <a href="{% url 'acervo' %}" class="nav-link active">
@@ -53,6 +67,7 @@
                             </p>
                         </a>
                 </li>
+                {% endif %}
                 <!--li class="nav-item">
                     <a href="#" class="nav-link desactive">
                         <i class="nav-icon fas fa-book-reader"></i>

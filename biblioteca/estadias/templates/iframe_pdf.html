@@ -3,7 +3,8 @@
 {% block title %}PDF preview{% endblock %}
 {% block content %}
 <!-- Content Header (Page header) -->
-<div id="proyectos_preview">
+<!--div id="proyectos_preview" oncopy="alert('¡Copiado prohibido!');return false"-->
+<div id="proyectos_preview" oncopy="notCopy();return false">
     <section class="content-header mt-5">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -39,10 +40,8 @@
                 </div>
             </div>
         </div>
-        <div class="content mx-1 mb-5 p-3">
-            <!--iframe src="{{ reporte }}" frameborder="0" width="100%" height="800px" style="border: none;"></iframe-->
-            <embed src="{{ reporte }}#toolbar=0&navpanes=0&scrollbar=0&statusbar=0" type="application/pdf" width="100%"
-                height="600px" />
+        <div class="mx-4" id="pdfContainer">
+            <div id="pdfViewer" data-url=" {{ reporte }}"></div>
         </div>
     </div>
 </div>

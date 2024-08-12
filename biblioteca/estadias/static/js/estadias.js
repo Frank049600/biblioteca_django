@@ -99,3 +99,63 @@ if (response == 'error') {
     icon = 'error'
     estadia_alert(title, text, icon)
 }
+
+// Función que evita el copiado de texto en la página del preview
+function notCopy() {
+    action_alert('La acción de copiado no esta permitida');
+}
+// Función que evita la el click derecho dentro de la página del preview
+notClicRight = document.getElementById('iframe_card');
+page = document.getElementById('proyectos_preview');
+notClicRight.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+});
+// Función para evitar la impresión de pantalla
+document.addEventListener('keydown', (event) => {
+    if (event.ctrlKey) {
+        if (event.keyCode == 80) {
+            action_alert('La acción de impresión no esta permitida')
+            event.preventDefault();
+        }
+    }
+});
+// Función para el pintado del reporte en modo canvas dentro de la página
+var url = $('#pdfViewer').data('url');
+var loadingTask = pdfjsLib.getDocument({ url: url });
+loadingTask.promise.then(function (pdf) {
+    // Se obtiene el número total de páginas del PDF
+    let total_pages = pdf.numPages;
+
+    for (let i = 1; i <= total_pages; i++) {
+        (function (pageNumber) {
+
+            pdf.getPage(pageNumber).then(function (page) {
+                var scale = 0.8;
+                var viewport = page.getViewport({ scale: scale });
+
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext).promise.then(function () {
+                    console.log('Página renderizada');
+                });
+
+                document.getElementById('pdfViewer').appendChild(canvas);
+            }).catch(function (error) {
+                console.log('Error al cargar la página ' + pageNumber + ' del PDF: ', error);
+            });
+        })(i);
+    }
+}).catch(function (error) {
+    console.log('Error al cargar el PDF: ', error);
+});
+
+$('#id_matricula').on('input', function () {
+    console.log($('input[name=matricula]').val());
+})

@@ -27,3 +27,13 @@ const register_deleteSwal = (title, coloca, text, icon, rute) => {
             }
         })
 }
+
+const action_alert = (text) => {
+    Swal.fire({
+        title: '¡Acción no permitida!',
+        icon: 'warning',
+        text: text,
+        showConfirmButton: false,
+        timer: 2100
+    })
+}

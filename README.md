@@ -35,3 +35,6 @@
 #
 # Librerías adicionales
 # pip install django-import-export
+#
+# pip install django-environ
+#

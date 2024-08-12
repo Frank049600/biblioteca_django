@@ -22,4 +22,12 @@
     border-radius: 0 0 10px 10px;
 }
 
-#proyectos_preview #iframe_card .row {}
+#pdfContainer {
+    height: 600px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+}
+
+#pdfContainer::-webkit-scrollbar {
+    display: none;
+}
