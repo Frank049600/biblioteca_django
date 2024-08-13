@@ -82,7 +82,8 @@ INSTALLED_APPS = [
     'estadias.apps.EstadiasConfig',
     'sistema.apps.SistemaConfig',
     'sito.apps.SitoConfig',
-    'usuario.apps.UsuarioConfig'
+    'usuario.apps.UsuarioConfig',
+    'catalogo.apps.CatalogoConfig'
 
     ]
 

@@ -30,7 +30,7 @@ def user_permissions_and_groups(request):
 
 def group_permission(request):
     user = request.user
-    groups_list = ['Alumno']
+    groups_list = ['Alumno', 'Administrador']
     # Verifica que el usuario este autenticado
     if user.is_authenticated:
         # Retorna el listado de todos los grupos en los que pertenece el usuario
@@ -38,9 +38,10 @@ def group_permission(request):
         # Recorre el listado de grupos
         for i in range(0, len(groups)):
             # Valida que el grupo este dentro de los permitidos
-            if groups[i] == groups_list[i]:
-                # Si el grupo es permitido se retorna
-                return {"grupo": groups[i]}
+            for g in range(0, len(groups_list)):
+                if groups[i] == groups_list[g]:
+                    # Si el grupo es permitido se retorna
+                    return {"grupo": groups[i]}
     else:
         # Si el usuario no esta autenticado, se retorna una variable vacía
         return {"grupo": ""}
@@ -59,7 +60,7 @@ def get_alumnos_clase(request):
 
 def get_grupo(request):
     user = request.user
-    if user.is_authenticated:
+    if user.is_authenticated and user.login != 'ramon':
         grupos = []
         cve_grupo = AlumnoGrupo.objects.filter(matricula=user.login).values_list('cve_grupo', flat=True)
         for cve in cve_grupo:

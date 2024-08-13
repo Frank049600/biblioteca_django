@@ -1,6 +1,6 @@
 // Creación de gráfica de pastel
 // Se obtienen los estados registrados
-let states = $('#chartPie').data('states')
+let states = $('#chartPie').data('states');
 Highcharts.chart('container', {
     chart: {
         type: 'pie'
@@ -80,8 +80,8 @@ Highcharts.chart('container', {
 });
 
 // Creación de gráfica de barras
-let libros = $('#chartColum').data('libros')
-let discos = $('#chartColum').data('discos')
+let libros = $('#chartColum').data('libros');
+let discos = $('#chartColum').data('discos');
 Highcharts.chart('container_colum', {
     chart: {
         type: 'column'
@@ -142,6 +142,89 @@ Highcharts.chart('container_colum', {
                     drilldown: 'Discos',
                     color: '#007bff'
                 }
+            ]
+        }
+    ]
+});
+
+let value_adqui = $('#chartColumAdqui').data('valueadqui');
+let name_cole = $('#chartColumAdqui').data('nameadqui');
+let spt_1 = name_cole.split('[')
+let spt_2 = spt_1[1].split(']')
+let name_value = spt_2[0].split(',')
+
+Highcharts.chart('adqui_colum', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'left',
+        text: 'Gráfica de comparación'
+    },
+    subtitle: {
+        align: 'left',
+        text: 'Se muestra la cantidad el tipo de adquisición que se ha usado'
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Total de elementos'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.0f}'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+            '<b>{point.y:.0f}</b> en total<br/>'
+    },
+
+    series: [
+        {
+            data: [
+                {
+                    name: name_value[0],
+                    y: value_adqui[0],
+                    drilldown: name_value[0],
+                    color: 'red'
+                },
+                {
+                    name: name_value[1],
+                    y: value_adqui[1],
+                    drilldown: name_value[1],
+                    color: 'blue'
+                },
+                {
+                    name: name_value[2],
+                    y: value_adqui[2],
+                    drilldown: name_value[2],
+                    color: 'brown'
+                },
+                {
+                    name: name_value[3],
+                    y: value_adqui[3],
+                    drilldown: name_value[3],
+                    color: 'orange'
+                },
             ]
         }
     ]

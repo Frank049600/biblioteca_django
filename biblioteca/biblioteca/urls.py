@@ -9,6 +9,7 @@ from login.views import Login, logoutUser
 from estadias.views import estadias_registro
 from estadias.views import view_report, servir_pdf
 from usuario.views import login_view
+from catalogo.views import catalago_View
 #
 from django.conf import settings
 from django.views.static import serve
@@ -35,6 +36,9 @@ urlpatterns = [
 
     # aplicación de sesión
     path('session-security/', include('session_security.urls')),
+
+    # Aplicación de catalogo
+    path('catalago_View', login_required(catalago_View), name='catalago_View'),
 ]
 
 urlpatterns += [

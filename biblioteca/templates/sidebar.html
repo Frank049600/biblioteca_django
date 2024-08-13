@@ -40,9 +40,9 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
-                {% if grupo != 'Alumnos' %}
+                {% if grupo != 'Alumno' %}
                 <li class="nav-item">
-                    {% if side_code == 100 %}
+                    {% if data.side_code == 100 %}
                     <a href="{% url 'inicio' %}" class="nav-link active">
                         {% else %}
                         <a href="{% url 'inicio' %}" class="nav-link">
@@ -54,7 +54,7 @@
                         </a>
                 </li>
                 {% endif %}
-                {% if grupo != 'ALumnos' %}
+                {% if grupo != 'Alumno' %}
                 <li class="nav-item">
                     {% if side_code == 200 %}
                     <a href="{% url 'acervo' %}" class="nav-link active">
@@ -68,23 +68,31 @@
                         </a>
                 </li>
                 {% endif %}
-                <!--li class="nav-item">
-                    <a href="#" class="nav-link desactive">
-                        <i class="nav-icon fas fa-book-reader"></i>
-                        <p>
-                            Libros
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <i class="fas fa-book"></i>
-                                <p>Prestamos</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li-->
+                <li class="nav-item">
+                    {% if side_code == 400 %}
+                    <a href="#" class="nav-link active">
+                        {% else %}
+                        <a href="#" class="nav-link">
+                            {% endif %}
+                            <i class="nav-icon fas fa-book-reader"></i>
+                            <p>
+                                Libros
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                {% if side_code == 400 %}
+                                <a href="{% url 'catalago_View' %}" class="nav-link active">
+                                    {% else %}
+                                    <a href="{% url 'catalago_View' %}" class="nav-link">
+                                        {% endif %}
+                                        <i class="fas fa-book"></i>
+                                        <p>Prestamos</p>
+                                    </a>
+                            </li>
+                        </ul>
+                </li>
                 <li class="nav-item">
                     {% if side_code == 300 or side_code == 301 %}
                     <a href="#" class="nav-link active">
