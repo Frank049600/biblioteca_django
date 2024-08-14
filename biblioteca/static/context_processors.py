@@ -1,5 +1,6 @@
 from sito.models import Persona, Alumno, AlumnoClase, AlumnoGrupo, Grupo
 from static.utils import dd
+import json
 
 
 def persona(request):
@@ -28,9 +29,9 @@ def user_permissions_and_groups(request):
        'user_groups': groups,
    }
 
-def group_permission(request):
+def group_permission(request, query = False):
     user = request.user
-    groups_list = ['Alumno', 'Administrador']
+    groups_list = ['Alumno', 'Administrador', '27 Docentes']
     # Verifica que el usuario este autenticado
     if user.is_authenticated:
         # Retorna el listado de todos los grupos en los que pertenece el usuario
@@ -40,8 +41,16 @@ def group_permission(request):
             # Valida que el grupo este dentro de los permitidos
             for g in range(0, len(groups_list)):
                 if groups[i] == groups_list[g]:
+                    if query:
+                        return groups[i]
                     # Si el grupo es permitido se retorna
-                    return {"grupo": groups[i]}
+                    if groups[i] == '27 Docentes':
+                        grupo = groups[i].split(' ')[1]
+                        return {"grupo": grupo}
+                    else:
+                        return {"grupo": groups[i]}
+                # else:
+                #     return {"grupo": ""}
     else:
         # Si el usuario no esta autenticado, se retorna una variable vacía
         return {"grupo": ""}
@@ -59,16 +68,20 @@ def get_alumnos_clase(request):
         return {'profesor': ''}
 
 def get_grupo(request):
+    gr = group_permission(request, True)
     user = request.user
-    if user.is_authenticated and user.login != 'ramon':
-        grupos = []
-        cve_grupo = AlumnoGrupo.objects.filter(matricula=user.login).values_list('cve_grupo', flat=True)
-        for cve in cve_grupo:
-            grupo_name = Grupo.objects.get(cve_grupo=cve)
-            grupos.append(grupo_name.nombre)
-        for name_grupo in grupos[::-1]:
-            if name_grupo:
-                break
-        return {'grupo_name': name_grupo}
+    if gr != '27 Docentes' and gr != 'Administrador':
+        if user.is_authenticated:
+            grupos = []
+            cve_grupo = AlumnoGrupo.objects.filter(matricula=user.login).values_list('cve_grupo', flat=True)
+            for cve in cve_grupo:
+                grupo_name = Grupo.objects.get(cve_grupo=cve)
+                grupos.append(grupo_name.nombre)
+            for name_grupo in grupos[::-1]:
+                if name_grupo:
+                    break
+            return {'grupo_name': name_grupo}
+        else:
+            return {'grupo_name': ''}
     else:
         return {'grupo_name': ''}

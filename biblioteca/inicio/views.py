@@ -41,7 +41,6 @@ def index_inicio(request):
     # Se realiza el recopilado del tipo de adquisición
     t_adqui = []
     name_cole =  []
-    coleccion = []
     for adq in datos:
         ingresa = 'S/D' if adq.adqui == '' else adq.adqui
         t_adqui.append(ingresa)
@@ -62,6 +61,4 @@ def index_inicio(request):
         "name_cole": name_cole,
         "value_adqui": value_adqui
     }
-
-    # return render(request, 'index_inicio.html', { "total_book": total_book, "states": states[0], "total_state": total_state, "side_code":side_code, "cant_libros":format_libro, "cant_discos": format_disco })
     return render(request, 'index_inicio.html', { "data": data })

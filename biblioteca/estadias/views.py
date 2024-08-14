@@ -9,6 +9,9 @@ from django.conf import settings
 from static.helpers import file_new_name
 from django.contrib import messages
 from static.utils import dd
+from sito.models import Alumno, AlumnoGrupo, Grupo, Carrera, Usuario, Persona, Periodo
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 # def modal_registro(request):
@@ -77,3 +80,29 @@ def servir_pdf(request, report_rute):
     response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
     response['Content-Disposition'] = 'inline; filename="mi_documento.pdf"'
     return response
+
+def get_alumno(request):
+    matricula = request.GET.get('matricula')
+    if matricula:
+        cve_persona = ''
+        try:
+            # alumno_grupo = get_object_or_404(AlumnoGrupo, matricula=matricula)
+            alumno_grupo = AlumnoGrupo.objects.filter(matricula=matricula).values_list('cve_grupo', flat=True)
+            cve_grupo = alumno_grupo[len(alumno_grupo) - 1]
+            grupo = Grupo.objects.get(cve_grupo=cve_grupo)
+            carrera = Carrera.objects.get(nombre=grupo.cve_carrera)
+            generacion = Alumno.objects.get(matricula=matricula)
+            cve_persona = Usuario.objects.get(login=matricula)
+            persona = Persona.objects.get(cve_persona=cve_persona.cve_persona)
+            data = {
+                "nombre": persona.nombre,
+                "apellido_paterno": persona.apellido_paterno,
+                "apellido_materno": persona.apellido_materno,
+                "nombre_grupo": grupo.nombre,
+                "nombre_carrera": carrera.nombre,
+                "generacion": generacion.generacion
+            }
+            return JsonResponse(data)
+        except Exception as a:
+            print(f"Algo salio mal: {a}")
+    return JsonResponse({'error': 'Matricula no proporcionada'}, status=400)

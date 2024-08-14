@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %} Acervo {% endblock %}
 {% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/acervo.css' %}">
+{% endblock %}
 
 <!-- Content Header (Page header) -->
 <div id="acervo">
@@ -118,4 +121,7 @@
 </div>
 <!-- Se incluye el html de modal -->
 {% include 'modal.html' %}
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/acervo.js' %}"></script>
 {% endblock %}

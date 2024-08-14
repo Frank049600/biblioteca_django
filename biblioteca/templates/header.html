@@ -1,4 +1,8 @@
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+{% endblock %}
+
 <nav class="main-header navbar navbar-expand navbar-white navbar-light elevation-1 fixed-top">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -10,15 +14,15 @@
         </li>
     </ul>
     <ul class=" navbar-nav ml-auto">
-        <div class="btn-group dropstart">
+        <div class="btn-group dropdown">
             <button class="btn dropdown-toggle text-white text-bold" type="button" id="btnDropdown"
                 data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                 {{ persona }}
             </button>
-            <ul class="dropdown-menu" id="logoutBtn">
+            <ul class="dropdown-menu dropdown-menu-lg-end" id="logoutBtn">
                 <li>
-                    <a class="dropdown-item text-white" href="{% url 'logout' %}">Cerrar sesión
-                        <i class="fas fa-power-off ml-2"></i>
+                    <a class="dropdown-item text-white text-center" href="{% url 'logout' %}">Cerrar sesión
+                        <i class="fas fa-power-off"></i>
                     </a>
                 </li>
             </ul>

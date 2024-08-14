@@ -100,62 +100,108 @@ if (response == 'error') {
     estadia_alert(title, text, icon)
 }
 
-// Función que evita el copiado de texto en la página del preview
-function notCopy() {
-    action_alert('La acción de copiado no esta permitida');
-}
-// Función que evita la el click derecho dentro de la página del preview
-notClicRight = document.getElementById('iframe_card');
-page = document.getElementById('proyectos_preview');
-notClicRight.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-});
-// Función para evitar la impresión de pantalla
-document.addEventListener('keydown', (event) => {
-    if (event.ctrlKey) {
-        if (event.keyCode == 80) {
-            action_alert('La acción de impresión no esta permitida')
-            event.preventDefault();
+let iframe = $('#proyectos_preview')
+if (iframe.length != 0) {
+    // Función que evita el copiado de texto en la página del preview
+    function notCopy() {
+        action_alert('La acción de copiado no esta permitida');
+    }
+    // Función que evita la el click derecho dentro de la página del preview
+    notClicRight = document.getElementById('iframe_card');
+    page = document.getElementById('proyectos_preview');
+    notClicRight.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+    // Función para evitar la impresión de pantalla
+    document.addEventListener('keydown', (event) => {
+        console.log(event);
+        if (event.ctrlKey) {
+            if (event.keyCode == 80) {
+                action_alert('La acción de impresión no esta permitida')
+                event.preventDefault();
+            }
         }
-    }
-});
-// Función para el pintado del reporte en modo canvas dentro de la página
-var url = $('#pdfViewer').data('url');
-var loadingTask = pdfjsLib.getDocument({ url: url });
-loadingTask.promise.then(function (pdf) {
-    // Se obtiene el número total de páginas del PDF
-    let total_pages = pdf.numPages;
+    });
+    // Función para el pintado del reporte en modo canvas dentro de la página
+    var url = $('#pdfViewer').data('url');
+    var loadingTask = pdfjsLib.getDocument({ url: url });
+    loadingTask.promise.then(function (pdf) {
+        // Se obtiene el número total de páginas del PDF
+        let total_pages = pdf.numPages;
 
-    for (let i = 1; i <= total_pages; i++) {
-        (function (pageNumber) {
+        for (let i = 1; i <= total_pages; i++) {
+            (function (pageNumber) {
 
-            pdf.getPage(pageNumber).then(function (page) {
-                var scale = 0.8;
-                var viewport = page.getViewport({ scale: scale });
+                pdf.getPage(pageNumber).then(function (page) {
+                    var scale = 0.8;
+                    var viewport = page.getViewport({ scale: scale });
 
-                var canvas = document.createElement('canvas');
-                var context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
 
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                page.render(renderContext).promise.then(function () {
-                    console.log('Página renderizada');
+                    var renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    page.render(renderContext).promise.then(function () {
+                        console.log('Página renderizada');
+                    });
+
+                    document.getElementById('pdfViewer').appendChild(canvas);
+                }).catch(function (error) {
+                    console.log('Error al cargar la página ' + pageNumber + ' del PDF: ', error);
                 });
+            })(i);
+        }
+    }).catch(function (error) {
+        console.log('Error al cargar el PDF: ', error);
+    });
+}
 
-                document.getElementById('pdfViewer').appendChild(canvas);
-            }).catch(function (error) {
-                console.log('Error al cargar la página ' + pageNumber + ' del PDF: ', error);
-            });
-        })(i);
-    }
-}).catch(function (error) {
-    console.log('Error al cargar el PDF: ', error);
-});
+$('#modal_registro').on('shown.bs.modal', function () {
+    $('#btn_search_matricula').on('click', function (e) {
+        let matricula = $('#id_matricula').val()
+        if (matricula != '') {
+            $('#msg_search').attr('style', 'display:block')
+            $.ajax({
+                url: '/get_alumno/',
+                data: { "matricula": matricula },
+                type: 'GET',
+                success: function (response) {
+                    $('#msg_search').attr('style', 'display:none');
+                    $('#msg_error').attr('style', 'display:none');
+                    $('#msg_success').attr('style', 'display:block');
+                    console.log(response);
+                    let nombre_completo = response['nombre'] + ' ' + response['apellido_paterno'] + ' ' + response['apellido_materno'];
+                    let carrera = response['nombre_grupo'];
+                    $('input[name=alumno]').val(nombre_completo);
+                    $('input[name=carrera]').val(carrera);
+                },
+                error: function (error) {
+                    $('#msg_success').attr('style', 'display:none');
+                    $('#msg_search').attr('style', 'display:none');
+                    $('#msg_error').attr('style', 'display:block');
+                    $('input[name=alumno]').val('');
+                    $('input[name=carrera]').val('');
+                    console.log(error);
+                }
+            })
+        }
+    })
+})
 
-$('#id_matricula').on('input', function () {
-    console.log($('input[name=matricula]').val());
+$('#modal_registro').on('hidden.bs.modal', function () {
+    $('#msg_search').attr('style', 'display:none');
+    $('#msg_error').attr('style', 'display:none');
+    $('#msg_success').attr('style', 'display:none');
+    $('input[name=proyecto]').val('');
+    $('input[name=matricula]').val('');
+    $('input[name=alumno]').val('');
+    $('input[name=carrera]').val('');
+    $('input[name=generacion]').val('');
+    $('input[name=empresa]').val('');
+    $('input[name=asesor_orga]').val('');
+    $('input[name=reporte]').val('');
 })

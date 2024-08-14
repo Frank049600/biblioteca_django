@@ -49,14 +49,15 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 MESSAGE_TAGS = {
     messages.ERROR: "Error",
     messages.SUCCESS: 'Éxito',
-    messages.WARNING: 'Alerta'
+    messages.WARNING: 'Alerta',
+    messages.INFO: 'Info'
 }
 
 CUSTOM_MESSAGE_ICONS = {
     'debug': 'info',
-    'info': 'info',
+    'Info': 'info',
     'Éxito': 'success',
-    'warning': 'warning',
+    'Alerta': 'warning',
     'Error': 'error',
 }
 

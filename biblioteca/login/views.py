@@ -24,6 +24,7 @@ class Login(FormView):
         if request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
         else:
+            messages.add_message(request, messages.ERROR, 'Por favor introduzca un nombre de usuario y contraseña correctos.')
             return super(Login,self).dispatch(request, *args, **kwargs)
 
     # def login_view(request):

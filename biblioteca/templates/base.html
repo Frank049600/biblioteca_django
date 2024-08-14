@@ -18,20 +18,13 @@
         <link rel="stylesheet" href="{% static 'lib/dist/css/adminlte.min.css' %}">
         <!-- DataTable -->
         <link rel="stylesheet" href="{% static 'lib/datatable/datatable.min.css' %}">
-        <!--link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" /-->
         <!-- FAVICON -->
         <link rel="shortcut icon" href="{% static 'img/Logo-UTS.png' %}" type="image/x-icon">
         <!-- PreLoader -->
         <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
         <!-- Css propios -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-        <link rel="stylesheet" href="{% static 'css/header.css' %}">
-        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
-        <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
-        <link rel="stylesheet" href="{% static 'css/acervo.css' %}">
-        <link rel="stylesheet" href="{% static 'css/estadias.css' %}">
-        <link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
+        {% block css %}{% endblock%}
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf_viewer.min.css"
             integrity="sha512-dbJOtZ3VfH52HMyZ0hz6HcLVK0bESRU396ht5fz4EC6icMeT0MKSYxp6LoydBDaMUHiAGjnI9vA3hZRcCc2Fxw=="
@@ -62,8 +55,7 @@
             {% include 'sidebar.html' %}
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper mb-5">
-
+            <div class="content-wrapper">
                 {% block content %}{% endblock %}
             </div>
             {% include 'footer.html' %}
@@ -96,13 +88,8 @@
         <script src="{% static 'lib/highcharts/accessibility.js' %}"></script>
         <!-- Script propios -->
         <script src="{% static 'js/notification.js' %}"></script>
-        <script src="{% static 'js/inicio.js' %}"></script>
-        <script src="{% static 'js/header.js' %}"></script>
-        <script src="{% static 'js/acervo.js' %}"></script>
-        <script src="{% static 'js/catalogo.js' %}"></script>
         <!-- PDF.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.min.js"></script>
-        <script src="{% static 'js/estadias.js' %}"></script>
         <!-- Tooltip (configuración) (etiquetas para los botones)-->
         <script src="{% static 'js/tooltip.js' %}"></script>
 
@@ -112,7 +99,7 @@
         <script>
             let icons = {
                 'debug': 'info',
-                'info': 'info',
+                'Info': 'info',
                 'Éxito': 'success',
                 'Alerta': 'warning',
                 'Error': 'error'

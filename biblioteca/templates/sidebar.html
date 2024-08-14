@@ -1,4 +1,7 @@
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{% url 'inicio' %}" class="brand-link">
@@ -40,7 +43,6 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
-                {% if grupo != 'Alumno' %}
                 <li class="nav-item">
                     {% if data.side_code == 100 %}
                     <a href="{% url 'inicio' %}" class="nav-link active">
@@ -53,8 +55,7 @@
                             </p>
                         </a>
                 </li>
-                {% endif %}
-                {% if grupo != 'Alumno' %}
+                {% if grupo != 'Alumno' and grupo != 'Docentes' %}
                 <li class="nav-item">
                     {% if side_code == 200 %}
                     <a href="{% url 'acervo' %}" class="nav-link active">

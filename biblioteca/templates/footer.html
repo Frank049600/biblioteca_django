@@ -1,11 +1,10 @@
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+{% endblock %}
+
 <footer class="main-footer text-center text-white">
-    <!-- Grid container -->
-
-    <!-- Section: Links -->
-
-    <!--Grid row-->
-    <div class="row w-100">
+    <div class="row">
         <!-- Grid column -->
         <div class="col-xl-3 col-md-4 col-4 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">
@@ -23,11 +22,6 @@
             <p><i class="fas fa-phone mr-1"></i>Tel:<br><a href="tel:01 (464) 647 38" style="color: white;">01 (464)
                     647 38</a></p>
         </div>
-        <!-- Grid column >
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            </div-->
-        <!-- Grid column -->
-        <!-- Grid column -->
         <div class="col-xl-3 col-md-4 col-4 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Síguenos en:</h6>
             <!-- Facebook -->
@@ -67,16 +61,5 @@
             reservados.
         </div>
     </div>
-    <!--div class="w-100 text-center" id="Copyright" style="background-color: rgba(0, 0, 0, 0.2)">
-        <span class="text-bold">Copyright &copy; 2024 UTS. All rights reserved. Version 1.0.0</span>
-        <div class="col-xl-12 py-3" style=" background-color: rgba(0, 0, 0, 0.2)">
-            <span class="text-bold">Copyright &copy; 2024
-                <a href=" https://www.utsalamanca.edu.mx/">UTS</a>
-                .All rights reserved.<b>Version</b> 1.0.0
-            </span>
-        </div>
-    </div-->
-    <!-- Copyright -->
-    <!-- Grid container -->
 </footer>
 <!-- End of .container -->

@@ -22,13 +22,7 @@ class model_estadias(models.Model):
         ("ISIP","ISIP"),
         ("IPQ","IPQ"),
         ("LGCH","LGCH"))
-   carrera=models.CharField(
-        max_length=20,
-        choices=ELECCION_CARRERA,
-        default='2',
-        blank=True,
-        help_text="Prioridad de la tarea"
-    )
+   carrera=models.CharField(max_length=20)
    reporte = models.FileField('Reporte',null=True,blank=True)
 
    def _str_(self):

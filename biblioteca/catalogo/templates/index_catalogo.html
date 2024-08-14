@@ -2,6 +2,9 @@
 {%load static%}
 {%block title%}Catalogo{%endblock%}
 {%block content%}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
+{% endblock %}
 
 <section class="content-header mt-5">
     <div class="container-fluid">
@@ -20,7 +23,7 @@
     </div><!-- /.container-fluid -->
 </section>
 
-<section class="portafolio mb-5">
+<div class="portafolio">
     <div class="card card-primary card-outline card-outline-tabs mx-3">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
@@ -793,6 +796,8 @@
             </div>
         </div>
     </div>
-
-</section>
+</div>
 {%endblock%}
+{% block js %}
+<script src="{% static 'js/catalogo.js' %}"></script>
+{% endblock %}

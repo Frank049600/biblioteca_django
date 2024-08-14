@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %}Proyectos de estadías{% endblock %}
 {% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/estadias.css' %}">
+{% endblock %}
 
 <!-- Content Header (Page header) -->
 <div id="proyectos">
@@ -23,7 +26,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <div class="content mx-4 mb-5 p-3">
+    <div class="content mx-4 pb-4">
         <div id="contentTitle" class="row">
             <div class="col-xl-6 align-self-center">
                 <h5 class="text-bold">Concentrado de Proyectos</h5>
@@ -76,4 +79,7 @@
     <!-- /.content -->
 </div>
 {% include 'modal_estadia.html' %}
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/estadias.js' %}"></script>
 {% endblock %}
