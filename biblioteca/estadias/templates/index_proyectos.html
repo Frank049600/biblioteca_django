@@ -55,6 +55,8 @@
                 </thead>
                 <tbody>
                     {% for p in reporte %}
+                    {{ persona.Persona }}
+                    {% if p.asesor_academico == persona.nombre_completo or grupo == 'Administrador' %}
                     <tr data-report="{{ p.reporte }}">
                         <td>{{p.proyecto}}</td>
                         <td>{{p.alumno}}</td>
@@ -64,12 +66,13 @@
                         <td>{{p.empresa}}</td>
                         <td>{{p.carrera}}</td>
                         <td class="text-center">
-                            <!--a type="button" id="reporte_view" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Ver reporte"><i class="fas fa-file-pdf" style="color: #cf2121;"></i></a-->
                             <a href="{% url 'view_report' p.reporte %}" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="Ver reporte"><i class="fas fa-file-pdf" style="color: #cf2121;"></i></a>
+                            <a type="button" id="reporte_edit" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Editar reporte"><i class="fas fa-edit text-info"></i></a>
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

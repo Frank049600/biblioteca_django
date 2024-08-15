@@ -1,5 +1,6 @@
 from django import forms
 from .models import model_estadias
+from static.helpers import dd
 
 class estadias_form(forms.ModelForm):
 
@@ -21,13 +22,13 @@ class estadias_form(forms.ModelForm):
 
     proyecto = forms.CharField(label='Proyecto', required=True, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Ingrese el nombre del proyecto'}))
     matricula = forms.IntegerField(label='Matricula', required=True, widget=forms.NumberInput (attrs={'class':'form-control','placeholder':'Ingrese la matricula del alumno'}))
-    alumno = forms.CharField(label='Alumno', required=False, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Ingrese el nombre del alumno', 'disabled': True}))
-    # asesor_academico = forms.CharField(label='Asesor académico', required=False, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Indique el asesor académico'}))
-    generacion = forms.CharField(label='Generación', required=True, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Indique la generación', 'disabled': False}))
+    alumno = forms.CharField(label='Alumno', required=False, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Ingrese el nombre del alumno', 'readonly':True}))
+    asesor_academico = forms.CharField(label='Asesor académico', required=False, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Nombre del asesor académico', 'readonly':True}))
+    generacion = forms.CharField(label='Generación', required=True, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Indique la generación'}))
     empresa = forms.CharField(label='Empresa', required=True, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Ingrese el nombre de la empresa'}))
     asesor_orga = forms.CharField(label='Asesor Institucional', required=False, max_length=255, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Ingrese el asesor organizacional'}))
-    carrera = forms.CharField(label='Carrera', required=True, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Indique la carrera', 'disabled': True}))
+    carrera = forms.CharField(label='Carrera', required=True, widget=forms.TextInput (attrs={'class':'form-control','placeholder':'Indique la carrera', 'readonly':True}))
     reporte = forms.FileField(label='Reporte', required=True, widget=forms.FileInput(attrs={'class':'form-control', 'accept':'.pdf', 'placeholder':'Ingrese reporte en formato PDF'}))
     class Meta:
         model = model_estadias
-        fields = ('proyecto', 'matricula','alumno','generacion','empresa','asesor_orga','carrera', 'reporte')
+        fields = ('proyecto', 'matricula','alumno' ,'asesor_academico' ,'generacion','empresa','asesor_orga','carrera', 'reporte')

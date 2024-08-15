@@ -123,7 +123,8 @@ if (iframe.length != 0) {
         }
     });
     // Función para el pintado del reporte en modo canvas dentro de la página
-    var url = $('#pdfViewer').data('url');
+    let url = $('#pdfViewer').data('url_reporte');
+    console.log(url);
     var loadingTask = pdfjsLib.getDocument({ url: url });
     loadingTask.promise.then(function (pdf) {
         // Se obtiene el número total de páginas del PDF
@@ -161,6 +162,9 @@ if (iframe.length != 0) {
 }
 
 $('#modal_registro').on('shown.bs.modal', function () {
+    let asesor = $('#data_academico').data('academico');
+    $('input[name=asesor_academico]').val(asesor);
+
     $('#btn_search_matricula').on('click', function (e) {
         let matricula = $('#id_matricula').val()
         if (matricula != '') {
@@ -173,7 +177,6 @@ $('#modal_registro').on('shown.bs.modal', function () {
                     $('#msg_search').attr('style', 'display:none');
                     $('#msg_error').attr('style', 'display:none');
                     $('#msg_success').attr('style', 'display:block');
-                    console.log(response);
                     let nombre_completo = response['nombre'] + ' ' + response['apellido_paterno'] + ' ' + response['apellido_materno'];
                     let carrera = response['nombre_grupo'];
                     $('input[name=alumno]').val(nombre_completo);
@@ -185,7 +188,6 @@ $('#modal_registro').on('shown.bs.modal', function () {
                     $('#msg_error').attr('style', 'display:block');
                     $('input[name=alumno]').val('');
                     $('input[name=carrera]').val('');
-                    console.log(error);
                 }
             })
         }

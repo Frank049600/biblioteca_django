@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %}PDF preview{% endblock %}
 {% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/estadias.css' %}">
+{% endblock %}
 <!-- Content Header (Page header) -->
 <!--div id="proyectos_preview" oncopy="alert('¡Copiado prohibido!');return false"-->
 <div id="proyectos_preview" oncopy="notCopy();return false">
@@ -41,8 +44,11 @@
             </div>
         </div>
         <div class="mx-4" id="pdfContainer">
-            <div id="pdfViewer" data-url=" {{ reporte }}"></div>
+            <div id="pdfViewer" data-url_reporte="{{ reporte }}"></div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/estadias.js' %}"></script>
 {% endblock %}

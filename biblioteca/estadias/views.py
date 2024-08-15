@@ -12,6 +12,7 @@ from static.utils import dd
 from sito.models import Alumno, AlumnoGrupo, Grupo, Carrera, Usuario, Persona, Periodo
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 # Create your views here.
 # def modal_registro(request):
@@ -32,20 +33,21 @@ def estadias_registro(request):
         form = estadias_form(request.POST, request.FILES)
         if form.is_valid():
             proyecto = form.cleaned_data['proyecto']
+            matricula = form.cleaned_data['matricula']
             alumno = form.cleaned_data['alumno']
             asesor_academico = form.cleaned_data['asesor_academico']
             generacion = form.cleaned_data['generacion']
             empresa = form.cleaned_data['empresa']
             asesor_orga = form.cleaned_data['asesor_orga']
             carrera = form.cleaned_data['carrera']
-            # name_ref = file_new_name(alumno, request.FILES['reporte'].name)
             name_ref = file_new_name(alumno, form.cleaned_data['reporte'].name)
             # Archivo reporte
             fs = FileSystemStorage()
             reporte = fs.save(name_ref, form.cleaned_data['reporte'])
-            # reporte = fs.save(name_ref, request.FILES['reporte'])
+
             proyectos=model_estadias.objects.create(
                     proyecto = proyecto,
+                    matricula = matricula,
                     alumno = alumno ,
                     asesor_academico = asesor_academico,
                     generacion = generacion,
@@ -81,6 +83,7 @@ def servir_pdf(request, report_rute):
     response['Content-Disposition'] = 'inline; filename="mi_documento.pdf"'
     return response
 
+# Función de búsqueda para retorno de información por búsqueda con matricula
 def get_alumno(request):
     matricula = request.GET.get('matricula')
     if matricula:
