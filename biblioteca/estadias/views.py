@@ -10,23 +10,34 @@ from static.helpers import file_new_name
 from django.contrib import messages
 from static.utils import dd
 from sito.models import Alumno, AlumnoGrupo, Grupo, Carrera, Usuario, Persona, Periodo
+from static.context_processors import group_permission
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
 
 # Create your views here.
 # def modal_registro(request):
 #     return render(request, 'modal_registro.html')
+def get_fullname_grupo(request):
+    user = request.user
+    cve = Usuario.objects.get(login=user)
+    persona = Persona.objects.get(cve_persona=cve.cve_persona)
+    group = group_permission(request, True)
+    name = persona.nombre + ' ' + persona.apellido_paterno + ' ' + persona.apellido_materno
 
-def get_all():
-    reporte = model_estadias.objects.all()
-    form = estadias_form()
-
-    return [reporte,form]
+    return {
+        "group": group,
+        "name": name
+    }
 
 def index_proyectos(request):
+    form = estadias_form()
+    fullname = get_fullname_grupo(request)['name']
+    flag = True
+    if get_fullname_grupo(request)['group'] == '27 Docentes':
+        flag = False
+
+    reporte = model_estadias.objects.all() if flag else model_estadias.objects.filter(asesor_academico=fullname)
     side_code = 300
-    return render(request,'index_proyectos.html',{"reporte":get_all()[0], "form":get_all()[1],"side_code":side_code})
+    return render(request,'index_proyectos.html',{"reporte":reporte, "form":form,"side_code":side_code})
 
 def estadias_registro(request):
     if request.method == 'POST':

@@ -27,3 +27,7 @@
     overflow-y: scroll;
     border: 1px solid #ccc;
 }
+
+table.dataTable td {
+    font-size: 0.8rem;
+}

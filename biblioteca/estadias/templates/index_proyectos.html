@@ -54,9 +54,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{ grupo }}
                     {% for p in reporte %}
-                    {{ persona.Persona }}
-                    {% if p.asesor_academico == persona.nombre_completo or grupo == 'Administrador' %}
                     <tr data-report="{{ p.reporte }}">
                         <td>{{p.proyecto}}</td>
                         <td>{{p.alumno}}</td>
@@ -72,7 +71,6 @@
                                 title="Editar reporte"><i class="fas fa-edit text-info"></i></a>
                         </td>
                     </tr>
-                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

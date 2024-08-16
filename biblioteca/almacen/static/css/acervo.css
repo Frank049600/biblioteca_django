@@ -49,3 +49,7 @@ table.dataTable.display>tbody>tr:nth-child(odd).selected>* {
     background-color: #0a3d62 !important;
     color: white;
 }
+
+table.dataTable td {
+    font-size: 0.8rem;
+}
