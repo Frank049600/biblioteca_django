@@ -25,9 +25,10 @@ def login_view(request):
             # Buscar si el usuario existe en sistema_usuario
             sistema_usuario = UsuarioAcceso.objects.filter(login=login).first()
             if sistema_usuario is not None:
-                persona = Persona.objects.get(cve_persona=sistema_usuario.cve_persona)
+                # persona = Persona.objects.get(cve_persona=sistema_usuario.cve_persona)
                 # Si el usuario existe en sistema_usuario, intentamos autenticarlo
                 usuario = authenticate(request, login=login, password=password)
+                print(f"User: {usuario}")
                 if usuario is not None:
                     # Usuario autenticado, iniciar sesión y redirigir
                     auth_login(request, sistema_usuario)

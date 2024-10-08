@@ -51,5 +51,5 @@ table.dataTable.display>tbody>tr:nth-child(odd).selected>* {
 }
 
 table.dataTable td {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
