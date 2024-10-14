@@ -1,4 +1,12 @@
+from typing import Any
 from django.db import models
+# from django_mysql.models import LongTextField
+
+class LongTextField(models.TextField):
+    def db_type(self, connection):
+        if connection.vendor == 'mysql':
+            return 'LONGTEXT'
+        return super().db_type(connection)
 class model_estadias(models.Model):
 
    proyecto=models.CharField(max_length=255)
@@ -23,7 +31,9 @@ class model_estadias(models.Model):
         ("IPQ","IPQ"),
         ("LGCH","LGCH"))
    carrera=models.CharField(max_length=20)
-   reporte = models.FileField('Reporte',null=True,blank=True)
+   # reporte = models.FileField('Reporte',null=True,blank=True)
+   reporte=models.CharField(max_length=255,null=True)
+   base64 = LongTextField('Reporte',null=True,blank=True)
 
    def _str_(self):
         return self.alumno

@@ -12,6 +12,7 @@ from static.utils import dd
 from sito.models import Alumno, AlumnoGrupo, Grupo, Carrera, Usuario, Persona, Periodo
 from static.context_processors import group_permission
 from django.http import JsonResponse
+import base64
 
 # Create your views here.
 # def modal_registro(request):
@@ -51,21 +52,26 @@ def estadias_registro(request):
             empresa = form.cleaned_data['empresa']
             asesor_orga = form.cleaned_data['asesor_orga']
             carrera = form.cleaned_data['carrera']
-            name_ref = file_new_name(alumno, form.cleaned_data['reporte'].name)
+            name_ref = file_new_name(alumno, form.cleaned_data['reporte_file'].name)
+
             # Archivo reporte
-            fs = FileSystemStorage()
-            reporte = fs.save(name_ref, form.cleaned_data['reporte'])
+            # fs = FileSystemStorage()
+            # response_file = fs.save(name_ref, form.cleaned_data['reporte_file'])
+
+            # Llamado de función para convertir documento a base64
+            base64 = convert_base64(form.cleaned_data['reporte_file'])
 
             proyectos=model_estadias.objects.create(
                     proyecto = proyecto,
                     matricula = matricula,
-                    alumno = alumno ,
+                    alumno = alumno,
                     asesor_academico = asesor_academico,
                     generacion = generacion,
                     empresa = empresa,
                     asesor_orga = asesor_orga,
                     carrera = carrera,
-                    reporte = reporte
+                    reporte = name_ref,
+                    base64 = base64
             )
             messages.add_message(request, messages.SUCCESS, 'Registro agregado')
             return redirect('proyectos')
@@ -77,6 +83,25 @@ def estadias_registro(request):
         form = estadias_form()
         messages.add_message(request, messages.ERROR, '¡Algo salio mal!')
         return redirect('proyectos')
+
+# Función para convertir documento a base64
+def convert_base64(doc, name_doc = False, revert = False, data = False):
+    # Se convierte el pdf en formato base64
+    if not revert:
+        # Lee el documento que llega en formulario
+        file = doc.read()
+        # Convierte el documento en base64
+        encoded_string = base64.b64encode(file)
+
+        return encoded_string.decode('utf-8')
+    else:
+        bytes = base64.b64decode(data, validate = True)
+        if bytes[0:4] != b'%PDF':
+            raise ValueError('False de firma del archivo PDF')
+        # Se escribe el contenido del PDF en un archivo local
+        f = open('file_convert.pdf', 'wb')
+        f.write(bytes)
+        f.close()
 
 # Función para mostrar file report
 def view_report(request, report_rute):
